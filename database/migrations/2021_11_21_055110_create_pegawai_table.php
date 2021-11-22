@@ -13,7 +13,7 @@ class CreatePegawaiTable extends Migration
      */
     public function up()
     {
-        Schema::create('Pegawai', function (Blueprint $table) {
+        Schema::create('pegawai', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->string('alamat');

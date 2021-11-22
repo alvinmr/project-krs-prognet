@@ -13,7 +13,7 @@ class CreateTransaksiKrsTable extends Migration
      */
     public function up()
     {
-        Schema::create('TransaksiKrs', function (Blueprint $table) {
+        Schema::create('transaksi_krs', function (Blueprint $table) {
             $table->id();
             $table->year('tahun_ajaran');
             $table->string('semester');

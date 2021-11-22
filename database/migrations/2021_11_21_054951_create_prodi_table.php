@@ -13,7 +13,7 @@ class CreateProdiTable extends Migration
      */
     public function up()
     {
-        Schema::create('Prodi', function (Blueprint $table) {
+        Schema::create('prodi', function (Blueprint $table) {
             $table->id();
             $table->string('nama_prodi');
         });

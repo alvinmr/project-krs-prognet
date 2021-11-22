@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class TransaksiKrs extends Model
 {
     use HasFactory;
-    protected $table='TransaksiKrs';
-    protected $fillable=['tahun_ajaran', 'semester', 'nilai', 'status', 'matakuliah_id', 'mahasiswa_id'];
+    protected $table = 'transaksi_krs';
+    protected $fillable = ['tahun_ajaran', 'semester', 'nilai', 'status', 'matakuliah_id', 'mahasiswa_id'];
 
     public function matakuliah()
     {

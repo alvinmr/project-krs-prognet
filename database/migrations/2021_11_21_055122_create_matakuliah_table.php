@@ -13,17 +13,16 @@ class CreateMatakuliahTable extends Migration
      */
     public function up()
     {
-        Schema::create('Matakuliah', function (Blueprint $table) {
+        Schema::create('matakuliah', function (Blueprint $table) {
             $table->id();
             $table->string('kode');
             $table->string('nama_matakuliah');
             $table->string('semester');
-            $table->enum('status_matakuliah', ['Wajib','Pilihan', 'Merdeka Belajar']);
+            $table->enum('status_matakuliah', ['Wajib', 'Pilihan', 'Merdeka Belajar']);
             $table->time('jam_mulai');
             $table->time('jam_selesai');
             $table->unsignedSmallInteger('dosen_id');
             $table->unsignedSmallInteger('prodi_id');
-            
         });
     }
 

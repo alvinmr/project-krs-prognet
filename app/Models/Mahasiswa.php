@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Mahasiswa extends Model
 {
     use HasFactory;
-    protected $table='Mahasiswa';
-    protected $fillable=['nim', 'nama', 'alamat', 'telepon', 'angkatan', 'foto_mahasiswa',
-    'password', 'prodi_id'];
+    protected $table = 'mahasiswa';
+    protected $fillable = [
+        'nim', 'nama', 'alamat', 'telepon', 'angkatan', 'foto_mahasiswa',
+        'password', 'prodi_id'
+    ];
 
     public function prodi()
     {

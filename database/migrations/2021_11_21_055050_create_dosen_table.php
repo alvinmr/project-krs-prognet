@@ -13,7 +13,7 @@ class CreateDosenTable extends Migration
      */
     public function up()
     {
-        Schema::create('Dosen', function (Blueprint $table) {
+        Schema::create('dosen', function (Blueprint $table) {
             $table->id();
             $table->string('nip');
             $table->string('nama');

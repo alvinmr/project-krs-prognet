@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Matakuliah extends Model
 {
     use HasFactory;
-    protected $table='Matakuliah';
-    protected $fillable=['kode', 'nama_matakuliah', 'semester', 'status_matakuliah', 
-    'jam_mulai', 'jam_selesai', 'dosen_id', 'prodi_id'];
-    
+    protected $table = 'matakuliah';
+    protected $fillable = [
+        'kode', 'nama_matakuliah', 'semester', 'status_matakuliah',
+        'jam_mulai', 'jam_selesai', 'dosen_id', 'prodi_id'
+    ];
+
     public function dosen()
     {
         return $this->belongsTo(Dosen::class);
