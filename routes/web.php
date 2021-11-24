@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.dashboard.index');
+    return view('pages.pegawai.login.index');
 });
 
-Auth::routes();
+Route::get('/dashboard', function () {
+    return view('pages.dashboard.index');
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

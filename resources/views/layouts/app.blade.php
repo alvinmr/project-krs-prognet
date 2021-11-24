@@ -24,7 +24,7 @@
         <div class="main-wrapper">
             @include('includes.navbar')
 
-            @include('includes.sidebar')
+            @include('includes.pegawai.sidebar')
 
             <!-- Main Content -->
             <div class="main-content">
