@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\PegawaiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,12 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.pegawai.login.index');
+Route::prefix('mahasiswa/')->name('mahasiswa.')->group(function () {
+    Route::middleware('guest')->group(function () {
+        Route::get('login', [MahasiswaController::class, 'showLogin'])->name('showLogin');
+        Route::post('login', [MahasiswaController::class, 'login'])->name('login');
+    });
+    Route::post('logout', [MahasiswaController::class, 'logout'])->name('logout');
+    Route::get('dashboard', [MahasiswaController::class, 'dashboard'])->name('dashboard')->middleware('auth:mahasiswa');
 });
 
-Route::get('/dashboard', function () {
-    return view('pages.dashboard.index');
+Route::prefix('pegawai/')->group(function () {
+    Route::get('login', [PegawaiController::class, 'showLogin'])->middleware('guest');
+    Route::post('login', [PegawaiController::class, 'login'])->middleware('guest');
+    Route::post('logout', [PegawaiController::class, 'logout'])->middleware('auth');
 });
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -8,7 +8,7 @@ class PegawaiController extends Controller
 {
     public function showLogin()
     {
-        # code...
+        return view('pages.pegawai.login.index');
     }
 
     public function login(Request $request)

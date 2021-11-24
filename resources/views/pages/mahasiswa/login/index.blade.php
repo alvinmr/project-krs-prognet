@@ -32,14 +32,18 @@
                         </h4>
                         <p class="text-muted">Sebelum kamu melakukan KRSan, kamu perlu masuk dengan akunmu terlebih
                             dahulu nih</p>
-                        <form method="POST" action="#" class="needs-validation" novalidate="">
+                        <form method="POST" action="{{ route('mahasiswa.login') }}" class="needs-validation"
+                            novalidate="">
+                            @csrf
                             <div class="form-group">
                                 <label for="nim">NIM</label>
-                                <input id="nim" type="text" class="form-control" name="nim" tabindex="1" required
-                                    autofocus>
-                                <div class="invalid-feedback">
-                                    Mohon masukkan NIM kamu
-                                </div>
+                                <input id="nim" type="text" class="form-control @error('nim') is-invalid @enderror"
+                                    name="nim" tabindex="1" required autofocus>
+                                @error('nim')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="form-group">

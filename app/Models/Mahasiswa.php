@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Mahasiswa extends Model
+class Mahasiswa extends Authenticatable
 {
     use HasFactory;
     protected $table = 'mahasiswa';
@@ -16,6 +16,6 @@ class Mahasiswa extends Model
 
     public function prodi()
     {
-        return $this->belongsTo(Prodi::class);
+        return $this->hasMany(Prodi::class);
     }
 }

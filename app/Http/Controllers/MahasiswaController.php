@@ -3,21 +3,46 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MahasiswaController extends Controller
 {
     public function showLogin()
     {
-        # code...
+        return view('pages.mahasiswa.login.index');
     }
 
     public function login(Request $request)
     {
-        # code...
+        $credentials = $request->validate([
+            'nim' => ['required'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::guard('mahasiswa')->attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('mahasiswa/dashboard');
+        }
+
+        return back()->withErrors([
+            'nim' => 'NIM atau Password yang kamu masukkan salah. Coba kembali!',
+        ]);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        # code...
+        Auth::guard('mahasiswa')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('mahasiswa.showLogin');
+    }
+
+    public function dashboard()
+    {
+        return view('pages.dashboard.index');
     }
 }

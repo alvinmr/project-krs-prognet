@@ -139,12 +139,23 @@
         <li class="dropdown"><a href="#" data-toggle="dropdown"
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                 <img alt="image" src="../assets/img/avatar/avatar-1.png" class="mr-1 rounded-circle">
-                <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+                @auth('mahasiswa')
+                    <div class="d-sm-none d-lg-inline-block">Hi, {{ auth('mahasiswa')->user()->nama }}</div>
+                @endauth
+                @auth('pegawai')
+                    <div class="d-sm-none d-lg-inline-block">Hi, {{ auth('pegawai')->user()->nama }}</div>
+                @endauth
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <a href="#" class="dropdown-item has-icon text-danger">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
+                <form action="{{ route('mahasiswa.logout') }}" method="post">
+                    @csrf
+                    <button type="submit" class="dropdown-item ">
+                        <div class="has-icon text-danger">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </div>
+                    </button>
+                </form>
             </div>
         </li>
     </ul>

@@ -24,7 +24,14 @@
         <div class="main-wrapper">
             @include('includes.navbar')
 
-            @include('includes.pegawai.sidebar')
+            @auth('mahasiswa')
+                @include('includes.mahasiswa.sidebar')
+            @endauth
+
+            @auth('pegawai')
+                @include('includes.pegawai.sidebar')
+            @endauth
+
 
             <!-- Main Content -->
             <div class="main-content">

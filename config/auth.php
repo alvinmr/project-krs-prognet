@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'mahasiswa',
+        'passwords' => 'mahasiswa',
     ],
 
     /*
@@ -36,9 +36,13 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'mahasiswa' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'mahasiswa',
+        ],
+        'pegawai' => [
+            'driver' => 'session',
+            'provider' => 'pegawai',
         ],
     ],
 
@@ -60,9 +64,13 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'mahasiswa' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Mahasiswa::class,
+        ],
+        'pegawai' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Pegawai::class,
         ],
 
         // 'users' => [
@@ -87,8 +95,8 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'mahasiswa' => [
+            'provider' => 'mahasiswa',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
