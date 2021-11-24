@@ -13,7 +13,7 @@ class CreateMessageTable extends Migration
      */
     public function up()
     {
-        Schema::create('message', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->longText('pesan');
             $table->unsignedSmallInteger('pegawai_id');
@@ -28,6 +28,6 @@ class CreateMessageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Message');
+        Schema::dropIfExists('messages');
     }
 }

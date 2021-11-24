@@ -33,6 +33,6 @@ class CreateMahasiswaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Mahasiswa');
+        Schema::dropIfExists('mahasiswa');
     }
 }

@@ -31,6 +31,6 @@ class CreateTransaksiKrsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('TransaksiKrs');
+        Schema::dropIfExists('transaksi_krs');
     }
 }
