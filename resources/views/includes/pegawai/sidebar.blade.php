@@ -20,12 +20,12 @@
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="blank.html"><i class="far fa-square"></i>
+                <a class="nav-link" href="blank.html"><i class="fas fa-book"></i>
                     <span>Data Mata Kuliah</span>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="blank.html"><i class="far fa-square"></i>
+                <a class="nav-link" href="blank.html"><i class="fas fa-chalkboard-teacher"></i>
                     <span>Data Dosen</span>
                 </a>
             </li>

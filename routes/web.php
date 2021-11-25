@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PegawaiController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
