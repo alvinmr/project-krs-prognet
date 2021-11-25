@@ -22,7 +22,7 @@ class CreateMahasiswaTable extends Migration
             $table->enum('angkatan', ['2017', '2018', '2019', '2020', '2021']);
             $table->string('foto_mahasiswa');
             $table->string('password');
-            $table->unsignedSmallInteger('prodi_id');
+            $table->foreignId('prodi_id')->constrained('prodi');
         });
     }
 

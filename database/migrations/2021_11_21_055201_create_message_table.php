@@ -16,8 +16,8 @@ class CreateMessageTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->longText('pesan');
-            $table->unsignedSmallInteger('pegawai_id');
-            $table->unsignedInteger('mahasiswa_id');
+            $table->foreignId('pegawai_id')->constrained('pegawai');
+            $table->foreignId('mahasiswa_id')->constrained('mahasiswa');
         });
     }
 

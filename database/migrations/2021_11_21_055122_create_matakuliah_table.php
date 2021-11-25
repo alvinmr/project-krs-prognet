@@ -21,8 +21,8 @@ class CreateMatakuliahTable extends Migration
             $table->enum('status_matakuliah', ['Wajib', 'Pilihan', 'Merdeka Belajar']);
             $table->time('jam_mulai');
             $table->time('jam_selesai');
-            $table->unsignedSmallInteger('dosen_id');
-            $table->unsignedSmallInteger('prodi_id');
+            $table->foreignId('dosen_id')->constrained('dosen');
+            $table->foreignId('prodi_id')->constrained('prodi');
         });
     }
 
