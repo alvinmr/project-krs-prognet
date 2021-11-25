@@ -14,8 +14,11 @@ class Mahasiswa extends Authenticatable
         'password', 'prodi_id'
     ];
 
+    public $timestamps = false;
+
     public function prodi()
     {
         return $this->hasMany(Prodi::class);
     }
 }
+

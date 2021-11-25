@@ -10,4 +10,6 @@ class Prodi extends Model
     use HasFactory;
     protected $table = 'prodi';
     protected $fillable = ['nama_prodi'];
+    public $timestamps = false;
 }
+

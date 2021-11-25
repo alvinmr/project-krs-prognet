@@ -15,6 +15,8 @@ class Matakuliah extends Model
         'jam_mulai', 'jam_selesai', 'dosen_id', 'prodi_id'
     ];
 
+    public $timestamps = false;
+
     public function dosen()
     {
         return $this->belongsTo(Dosen::class);
@@ -25,3 +27,4 @@ class Matakuliah extends Model
         return $this->belongsTo(Prodi::class);
     }
 }
+

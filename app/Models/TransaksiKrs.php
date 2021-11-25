@@ -21,3 +21,4 @@ class TransaksiKrs extends Model
         return $this->belongsTo(Mahasiswa::class);
     }
 }
+
