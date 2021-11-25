@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Matakuliah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,5 +45,26 @@ class PegawaiController extends Controller
     public function dashboard()
     {
         return view('pages.dashboard.index');
+    }
+
+    public function showTableMatakuliah()
+    {
+        return view('pages.pegawai.matakuliah.index');
+    }
+
+    public function showCreateFormMatakuliah()
+    {
+        return view('pages.pegawai.matakuliah.create');
+    }
+
+    public function storeMatakuliah(Request $request)
+    {
+        $countData = Matakuliah::all()->count();
+
+        $kodeMatkul = ['AR000', 'MS000'];
+
+        Matakuliah::create([
+            'kode' => $kodeMatkul[$request->prodi] . $countData + 1,
+        ]);
     }
 }

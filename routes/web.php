@@ -31,4 +31,7 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
     });
     Route::post('logout', [PegawaiController::class, 'logout'])->middleware('auth:pegawai');
     Route::get('dashboard', [PegawaiController::class, 'dashboard'])->name('dashboard')->middleware('auth:pegawai');
+    Route::get('matakuliah', [PegawaiController::class, 'showTableMatakuliah'])->name('matakuliah-index')->middleware('auth:pegawai');
+    Route::get('matakuliah/create', [PegawaiController::class, 'showCreateFormMatakuliah'])->name('matakuliah-create')->middleware('auth:pegawai');
+    Route::post('matakuliah/create', [PegawaiController::class, 'storeMatakuliah'])->name('matakuliah-store')->middleware('auth:pegawai');
 });

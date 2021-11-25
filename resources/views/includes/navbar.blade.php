@@ -138,7 +138,7 @@
         </li>
         <li class="dropdown"><a href="#" data-toggle="dropdown"
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image" src="../assets/img/avatar/avatar-1.png" class="mr-1 rounded-circle">
+                <img alt="image" src="https://source.boringavatars.com/beam" class="mr-1 rounded-circle">
                 @auth('mahasiswa')
                     <div class="d-sm-none d-lg-inline-block">Hi, {{ auth('mahasiswa')->user()->nama }}</div>
                 @endauth
