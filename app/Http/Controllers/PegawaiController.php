@@ -13,11 +13,35 @@ class PegawaiController extends Controller
 
     public function login(Request $request)
     {
-        # code...
+        $credentials = $request->validate([
+            'nip' => ['required'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::guard('pegawai')->attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('pegawai/dashboard');
+        }
+
+        return back()->withErrors([
+            'nip' => 'NIP atau Password yang kamu masukkan salah. Coba kembali!',
+        ]);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        # code...
+        Auth::guard('pegawai')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('pegawai.showLogin');
+    }
+
+    public function dashboard()
+    {
+        return view('pages.dashboard.index');
     }
 }

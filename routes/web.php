@@ -25,8 +25,11 @@ Route::prefix('mahasiswa/')->name('mahasiswa.')->group(function () {
     Route::get('dashboard', [MahasiswaController::class, 'dashboard'])->name('dashboard')->middleware('auth:mahasiswa');
 });
 
-Route::prefix('pegawai/')->group(function () {
-    Route::get('login', [PegawaiController::class, 'showLogin'])->middleware('guest');
-    Route::post('login', [PegawaiController::class, 'login'])->middleware('guest');
-    Route::post('logout', [PegawaiController::class, 'logout'])->middleware('auth');
+Route::prefix('pegawai/')->name('pegawai.')->group(function () {
+    Route::middleware('guest')->group(function () {
+        Route::get('login', [PegawaiController::class, 'showLogin'])->name('showLogin');
+        Route::post('login', [PegawaiController::class, 'login'])->name('login');
+    });
+    Route::post('logout', [PegawaiController::class, 'logout'])->middleware('auth:pegawai');
+    Route::get('dashboard', [PegawaiController::class, 'dashboard'])->name('dashboard')->middleware('auth:pegawai');
 });
