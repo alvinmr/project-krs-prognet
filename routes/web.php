@@ -34,4 +34,5 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
     Route::get('matakuliah', [PegawaiController::class, 'showTableMatakuliah'])->name('matakuliah-index')->middleware('auth:pegawai');
     Route::get('matakuliah/create', [PegawaiController::class, 'showCreateFormMatakuliah'])->name('matakuliah-create')->middleware('auth:pegawai');
     Route::post('matakuliah/create', [PegawaiController::class, 'storeMatakuliah'])->name('matakuliah-store')->middleware('auth:pegawai');
+    // ini fernando
 });
