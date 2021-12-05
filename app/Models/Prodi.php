@@ -11,5 +11,9 @@ class Prodi extends Model
     protected $table = 'prodi';
     protected $fillable = ['nama_prodi'];
     public $timestamps = false;
-}
 
+    public function mahasiswa()
+    {
+        return $this->hasOne(Mahasiswa::class);
+    }
+}
