@@ -15,10 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return redirect()->route('mahasiswa.login');
+});
+
 Route::prefix('mahasiswa/')->name('mahasiswa.')->group(function () {
     Route::middleware('guest')->group(function () {
         Route::get('login', [MahasiswaController::class, 'showLogin'])->name('showLogin');
         Route::post('login', [MahasiswaController::class, 'login'])->name('login');
+    });
+    Route::get('/', function () {
+        return redirect()->route('mahasiswa.login');
     });
     Route::post('logout', [MahasiswaController::class, 'logout'])->name('logout');
     Route::get('dashboard', [MahasiswaController::class, 'dashboard'])->name('dashboard')->middleware('auth:mahasiswa');
@@ -28,6 +35,9 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
     Route::middleware('guest')->group(function () {
         Route::get('login', [PegawaiController::class, 'showLogin'])->name('showLogin');
         Route::post('login', [PegawaiController::class, 'login'])->name('login');
+    });
+    Route::get('/', function () {
+        return redirect()->route('pegawai.login');
     });
     Route::post('logout', [PegawaiController::class, 'logout'])->middleware('auth:pegawai');
     Route::get('dashboard', [PegawaiController::class, 'dashboard'])->name('dashboard')->middleware('auth:pegawai');
