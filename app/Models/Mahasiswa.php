@@ -18,7 +18,11 @@ class Mahasiswa extends Authenticatable
 
     public function prodi()
     {
-        return $this->hasMany(Prodi::class);
+        return $this->belongsTo(Prodi::class);
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
     }
 }
-

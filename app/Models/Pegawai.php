@@ -11,5 +11,9 @@ class Pegawai extends Authenticatable
     protected $table = 'pegawai';
     protected $fillable = ['nama', 'alamat', 'telepon', 'nip', 'password'];
     public $timestamps = false;
-}
 
+    public function messages()
+    {
+        return $this->hasMany(Messages::class);
+    }
+}
