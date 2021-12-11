@@ -106,12 +106,15 @@ class MahasiswaResource extends Controller
         // Kode prodi, array key nya sesuai sama id di tabel prodi
         $kodeProdi = ['5521', '5511', '5541', '5531', '5551', '5561', '5571'];
 
+        // ngecek kalo ada update foto berarti foto sebelumnya dihapus trus diganti sama yang baru diupload
         if ($request->file('foto_mahasiswa')) {
             Storage::delete('foto_mahasiswa/' . $mahasiswa->foto_mahasiswa);
             $foto = $request->file('foto_mahasiswa');
             $nameFile = date('ymdhis') . '_' . $request->nama . '.' . $foto->getClientOriginalExtension();
             $foto->storeAs('foto_mahasiswa', $nameFile);
         }
+
+        // Ngecek kalo ada perubahan prodi sama angkatan, bakal ngaruh ke nim nya juga
         if ($request->prodi != $mahasiswa->prodi_id || $request->angkatan != $mahasiswa->angkatan) {
             $nim = substr($request->angkatan, 2) . '0' . $kodeProdi[$request->prodi - 1] . str_pad(Mahasiswa::where('prodi_id', $request->prodi)->count() + 1, 2, '0', STR_PAD_LEFT);
             $mahasiswa->nim = $nim;
