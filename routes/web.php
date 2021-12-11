@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MahasiswaResource;
 use App\Http\Controllers\PegawaiController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,10 +40,15 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
     Route::get('/', function () {
         return redirect()->route('pegawai.login');
     });
-    Route::post('logout', [PegawaiController::class, 'logout'])->middleware('auth:pegawai');
-    Route::get('dashboard', [PegawaiController::class, 'dashboard'])->name('dashboard')->middleware('auth:pegawai');
-    Route::get('matakuliah', [PegawaiController::class, 'showTableMatakuliah'])->name('matakuliah-index')->middleware('auth:pegawai');
-    Route::get('matakuliah/create', [PegawaiController::class, 'showCreateFormMatakuliah'])->name('matakuliah-create')->middleware('auth:pegawai');
-    Route::post('matakuliah/create', [PegawaiController::class, 'storeMatakuliah'])->name('matakuliah-store')->middleware('auth:pegawai');
+    Route::middleware('auth:pegawai')->group(function () {
+        Route::post('logout', [PegawaiController::class, 'logout']);
+        Route::get('dashboard', [PegawaiController::class, 'dashboard'])->name('dashboard');
+        // Route CRUD mahasiswa 
+        Route::resource('mahasiswa', MahasiswaResource::class);
+        // Route matakuliah
+        Route::get('matakuliah', [PegawaiController::class, 'showTableMatakuliah'])->name('matakuliah-index');
+        Route::get('matakuliah/create', [PegawaiController::class, 'showCreateFormMatakuliah'])->name('matakuliah-create');
+        Route::post('matakuliah/create', [PegawaiController::class, 'storeMatakuliah'])->name('matakuliah-store');
+    });
     // ini fernando
 });
