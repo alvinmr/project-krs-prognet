@@ -4,6 +4,7 @@ use App\Http\Controllers\DosenResource;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaResource;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\KRSController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,24 @@ Route::prefix('mahasiswa/')->name('mahasiswa.')->group(function () {
     });
     Route::post('logout', [MahasiswaController::class, 'logout'])->name('logout');
     Route::get('dashboard', [MahasiswaController::class, 'dashboard'])->name('dashboard')->middleware('auth:mahasiswa');
+
+    /* krs */
+    Route::get('krs', [KRSController::class, 'showTableKRS'])->name('krs-index')->middleware('auth:mahasiswa');
+
+    /* krs detail */
+    Route::get('krs/detail/{id}', [KRSController::class, 'showDetailMatakuliah'])->name('krs-detail', 'id')->middleware('auth:mahasiswa');
+
+    /* krs-create */
+    Route::get('krs/create', [KRSController::class, 'showCreateTableKRS'])->name('krs-create')->middleware('auth:mahasiswa');
+    Route::post('krs/store/{id}', [KRSController::class, 'storeKRS'])->name('krs-store', 'id')->middleware('auth:mahasiswa');
+
+    /* krs-edit */
+    Route::get('krs/edit', [KRSController::class, 'showEditTableKRS'])->name('krs-edit')->middleware('auth:mahasiswa');
+    Route::post('krs/storeedit', [KRSController::class, 'storeEditTableKRS'])->name('krs-store-edit')->middleware('auth:mahasiswa');
+
+    /* krs-delete */
+    Route::get('krs/delete', [KRSController::class, 'showDeleteTableKRS'])->name('krs-delete')->middleware('auth:mahasiswa');
+    Route::post('krs/storedelete/{id}', [KRSController::class, 'storeDeleteTableKRS'])->name('krs-store-delete', 'id')->middleware('auth:mahasiswa');
 });
 
 Route::prefix('pegawai/')->name('pegawai.')->group(function () {
