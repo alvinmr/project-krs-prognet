@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dosen;
-use App\Models\Prodi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 
 class DosenResource extends Controller
 {
@@ -40,19 +38,12 @@ class DosenResource extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nip' => 'requied|numeric',
+            'nip' => 'required|numeric',
             'nama' => 'required',
-            'email' => 'required',
-            'telepon' => 'required|numeric',
-
+            'email' => 'required|email',
+            'telepon' => 'required|numeric'
         ]);
-        Dosen::create([
-            'nip' => $request->nip,
-            'nama' => $request->nama,
-            'email' => $request->email,
-            'telepon' => $request->telepon,
-            'password' => Hash::make($nip)
-        ]);
+        Dosen::create($request->all());
 
         return redirect()->route('pegawai.dosen.index');
     }
@@ -90,7 +81,7 @@ class DosenResource extends Controller
     {
         $dosen->update([
             'nama' => $request->nama,
-            'email' => $request->alamat,
+            'email' => $request->email,
             'telepon' => $request->telepon,
         ]);
         return redirect()->route('pegawai.dosen.index');

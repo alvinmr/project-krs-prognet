@@ -5,8 +5,18 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('pegawai.dosen.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('pegawai.dosen.store') }}" method="post">
                 @csrf
+                <div class="form-group">
+                    <label for="nip">NIP</label>
+                    <input type="text" class="form-control @error('nip') is-invalid @enderror" id="nip"
+                        placeholder="Contoh : 198507232020072001" name="nip" value="{{ old('nip') }}">
+                    @error('nip')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
                 <div class="form-group">
                     <label for="nama">Nama</label>
                     <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama"
@@ -19,8 +29,9 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <textarea name="email" id="email" class="form-control @error('email') is-invalid @enderror" cols="30"
-                        rows="10" placeholder="Contoh : AlvinTheRainmaster@gmail.com">{{ old('email') }}</textarea>
+                    <input name="email" id="email" class="form-control @error('email') is-invalid @enderror" cols="30"
+                        rows="10" placeholder="Contoh : AlvinTheRainmaster@gmail.com" type="email"
+                        value="{{ old('email') }}"></input>
                     @error('email')
                         <div class="invalid-feedback">
                             {{ $message }}

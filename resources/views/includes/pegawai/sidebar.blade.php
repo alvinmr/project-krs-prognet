@@ -24,8 +24,9 @@
                     <span>Data Mata Kuliah</span>
                 </a>
             </li>
-            <li>
-                <a class="nav-link" href="blank.html"><i class="fas fa-chalkboard-teacher"></i>
+            <li class="{{ Request::is('*/dosen/*') || Request::is('*/dosen') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('pegawai.dosen.index') }}"><i
+                        class="fas fa-chalkboard-teacher"></i>
                     <span>Data Dosen</span>
                 </a>
             </li>
