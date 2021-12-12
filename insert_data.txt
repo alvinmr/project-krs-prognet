@@ -24,6 +24,7 @@ DB::table("matakuliah")->insert([
     "kode" => "TI2020I",
     "nama_matakuliah" => "Assembely Language",
     "semester" => "ganjil", 
+    "jumlah_sks" => 2,
     "status_matakuliah" => "Wajib",
     "jam_mulai" => "10:00",
     "jam_selesai" => "12:00",
