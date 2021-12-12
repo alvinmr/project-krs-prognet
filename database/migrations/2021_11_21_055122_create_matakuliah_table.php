@@ -18,6 +18,7 @@ class CreateMatakuliahTable extends Migration
             $table->string('kode');
             $table->string('nama_matakuliah');
             $table->string('semester');
+            $table->tinyInteger('jumlah_sks');
             $table->enum('status_matakuliah', ['Wajib', 'Pilihan', 'Merdeka Belajar']);
             $table->time('jam_mulai');
             $table->time('jam_selesai');
