@@ -17,7 +17,7 @@ class CreateTransaksiKrsTable extends Migration
             $table->id();
             $table->year('tahun_ajaran');
             $table->string('semester');
-            $table->enum('nilai', ['A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'E']);
+            $table->enum('nilai', ['Tunda', 'A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'E'])->default('Tunda');
             $table->enum('status', ['disetujui', 'ditolak', 'pending']);
             $table->foreignId('matakuliah_id')->constrained('matakuliah');
             $table->foreignId('mahasiswa_id')->constrained('mahasiswa');

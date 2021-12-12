@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DosenResource;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaResource;
 use App\Http\Controllers\PegawaiController;
@@ -49,6 +50,8 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
         Route::get('matakuliah', [PegawaiController::class, 'showTableMatakuliah'])->name('matakuliah-index');
         Route::get('matakuliah/create', [PegawaiController::class, 'showCreateFormMatakuliah'])->name('matakuliah-create');
         Route::post('matakuliah/create', [PegawaiController::class, 'storeMatakuliah'])->name('matakuliah-store');
+        // Route CRUD dosen
+        Route::resource('dosen', DosenResource::class);
     });
     // ini fernando
 });
