@@ -19,8 +19,9 @@
                     <span>Data Mahasiswa</span>
                 </a>
             </li>
-            <li>
-                <a class="nav-link" href="blank.html"><i class="fas fa-book"></i>
+            <li class="{{ Request::is('*/matakuliah/*') || Request::is('*/matakuliah') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('pegawai.matakuliah.index') }}"><i
+                        class="fas fa-book"></i>
                     <span>Data Mata Kuliah</span>
                 </a>
             </li>

@@ -5,6 +5,8 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaResource;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\KRSController;
+use App\Http\Controllers\MatakuliahResource;
+use App\Models\Matakuliah;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,9 +68,7 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
         // Route CRUD mahasiswa 
         Route::resource('mahasiswa', MahasiswaResource::class);
         // Route matakuliah
-        Route::get('matakuliah', [PegawaiController::class, 'showTableMatakuliah'])->name('matakuliah-index');
-        Route::get('matakuliah/create', [PegawaiController::class, 'showCreateFormMatakuliah'])->name('matakuliah-create');
-        Route::post('matakuliah/create', [PegawaiController::class, 'storeMatakuliah'])->name('matakuliah-store');
+        Route::resource('matakuliah', MatakuliahResource::class);
         // Route CRUD dosen
         Route::resource('dosen', DosenResource::class);
     });

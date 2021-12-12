@@ -46,26 +46,4 @@ class PegawaiController extends Controller
     {
         return view('pages.dashboard.index');
     }
-
-    public function showTableMatakuliah()
-    {
-        return view('pages.pegawai.matakuliah.index');
-    }
-
-    public function showCreateFormMatakuliah()
-    {
-        return view('pages.pegawai.matakuliah.create');
-    }
-
-    public function storeMatakuliah(Request $request)
-    {
-        $countData = Matakuliah::all()->count();
-
-        $kodeMatkul = ['AR000', 'MS000'];
-
-        Matakuliah::create([
-            'kode' => $kodeMatkul[$request->prodi] . $countData + 1,
-        ]);
-    }
 }
-

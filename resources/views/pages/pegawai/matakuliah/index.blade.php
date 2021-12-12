@@ -5,38 +5,56 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('pegawai.matakuliah-create') }}" class="btn btn-primary">Tambah Data</a>
+            <a href="{{ route('pegawai.matakuliah.create') }}" class="btn btn-primary">Tambah Matakuliah</a>
         </div>
         <div class="card-body">
-            <table class="table">
+            <table id="tableDosen" class="table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th>No</th>
+                        <th>Kode</th>
+                        <th>Nama Matakuliah</th>
+                        <th>Semester</th>
+                        <th>Jumlah SKS</th>
+                        <th>Status Matakuliah</th>
+                        <th>Waktu</th>
+                        <th>Dosen</th>
+                        <th>Prodi</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                    @foreach ($matakuliah as $item)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->kode }}</td>
+                            <td>{{ $item->nama_matakuliah }}</td>
+                            <td>{{ $item->semester }}</td>
+                            <td>{{ $item->jumlah_sks }}</td>
+                            <td>{{ $item->status_matakuliah }}</td>
+                            <td>{{ $item->jam_mulai }} - {{ $item->jam_selesai }}</td>
+                            <td>{{ $item->dosen->nama }}</td>
+                            <td>{{ $item->prodi->nama_prodi }}</td>
+                            <td>
+                                <form action="{{ route('pegawai.matakuliah.destroy', $item->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                </form>
+                                <a href="{{ route('pegawai.matakuliah.edit', $item->id) }}"
+                                    class="btn btn-warning">Edit</a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#tableDosen').DataTable();
+        });
+    </script>
+@endpush
