@@ -14,7 +14,7 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="{{ Request::is('*/mahasiswa/*') ? 'active' : '' }}">
+            <li class="{{ Request::is('*/mahasiswa/*') || Request::is('*/mahasiswa') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('pegawai.mahasiswa.index') }}"><i class="fas fa-users"></i>
                     <span>Data Mahasiswa</span>
                 </a>
