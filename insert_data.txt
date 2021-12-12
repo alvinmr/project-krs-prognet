@@ -1,0 +1,39 @@
+DB::table("prodi")->insert(["nama_prodi"=>"Teknologi Informasi"]);
+
+DB::table("mahasiswa")->insert([
+    "nim" => "2005551091",
+    "nama" => "Gede Rico Wijaya",
+    "alamat" => "Jl. Nusa Indah II, No 1", 
+    "telepon" => "087733889701",
+    "angkatan" => "2020",
+    "foto_mahasiswa" => "passfoto2005551091",
+    "password" => "passwordRico1234",
+    "prodi_id" => "1"
+])
+
+DB::table("transaksi_krs")->insert([
+    "tahun_ajaran" => "2021",
+    "semester" => "Rico Wijaya",
+    "nilai" => "A", 
+    "status" => "disetujui",
+    "matakuliah_id" => "1",
+    "mahasiswa_id" => "1"
+])
+
+DB::table("matakuliah")->insert([
+    "kode" => "TI2020I",
+    "nama_matakuliah" => "Assembely Language",
+    "semester" => "ganjil", 
+    "status_matakuliah" => "Wajib",
+    "jam_mulai" => "10:00",
+    "jam_selesai" => "12:00",
+    "dosen_id" => "1",
+    "prodi_id" => "1"
+])
+
+DB::table("dosen")->insert([
+    "nip" => "123412341234",
+    "nama" => "Alvin Maulana",
+    "email" => "alvinmr@yahoo.com", 
+    "telepon" => "087733889701"
+])

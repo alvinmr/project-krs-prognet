@@ -15,7 +15,7 @@
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="blank.html"><i class="fas fa-tasks"></i>
+                <a class="nav-link" href="{{ route('mahasiswa.krs-index') }}"><i class="fas fa-tasks"></i> 
                     <span>KRS Ku</span>
                 </a>
             </li>
