@@ -85,6 +85,7 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
         /* krs-create pegawai */
         Route::get('krs/create', [KRSPegawaiController::class, 'showCreateTableKRS'])->name('krs-create');
         Route::post('krs/store/{id}', [KRSPegawaiController::class, 'storeKRS'])->name('krs-store', 'id');
+        Route::post('krs/approve/{id}', [KRSPegawaiController::class, 'approve'])->name('krs-approve', 'id');
 
         /* krs-edit pegawai */
         /* Route::get('krs/edit', [KRSPegawaiController::class, 'showEditTableKRS'])->name('krs-edit');*/
