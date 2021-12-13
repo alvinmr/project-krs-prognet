@@ -10,7 +10,7 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Menu</li>
             <li>
-                <a class="nav-link" href="blank.html"><i class="fas fa-fire"></i>
+                <a class="nav-link" href="{{ route('mahasiswa.dashboard') }}"><i class="fas fa-fire"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
