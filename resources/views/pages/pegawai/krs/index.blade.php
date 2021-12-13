@@ -35,8 +35,12 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Hapus</button>
                                 </form>
-                                <a href="{{ route('pegawai.mahasiswa.edit', $item->id) }}"
+                                <a href="{{ route('pegawai.krs-edit', $item->id) }}"
                                     class="btn btn-warning">Edit</a>
+
+                                <form action="{{ route('pegawai.krs-approve', $item->id) }}" method="post">
+                                    <button type="submit" class="btn btn-success">Approve</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

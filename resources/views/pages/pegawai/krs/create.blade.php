@@ -5,8 +5,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            
-            <form action="{{ route('pegawai.krs-store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('pegawai.krs-store, ') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="nim">NIM</label>
