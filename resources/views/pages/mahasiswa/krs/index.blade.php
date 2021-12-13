@@ -21,8 +21,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        @foreach ($listKRS as $item)
+
+                    @foreach ($listKRS as $item)
+                        <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->matakuliah->kode }}</td>
                             <td>{{ $item->matakuliah->nama_matakuliah }}</td>
@@ -37,8 +38,8 @@
                                     <button type="submit" class="btn btn-danger">Hapus KRS</button>
                                 </form>
                             </td>
-                        @endforeach
-                    </tr>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
