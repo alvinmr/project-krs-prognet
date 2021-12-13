@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             ProdiSeeder::class,
             DosenSeeder::class,
             PegawaiSeeder::class,
-            MahasiswaSeeder::class
+            MahasiswaSeeder::class,
+            MatakuliahSeeder::class
         ]);
     }
 }
