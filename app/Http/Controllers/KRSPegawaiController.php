@@ -58,10 +58,11 @@ class KRSPegawaiController extends Controller
 
 
     /* Disini mau buat nanti klik si mahasiswanya terus nanti idnya masukin sini; */
-    public function storeKRS($id) 
+    public function storeKRS(Request $id) 
     {
         $matakuliah = Matakuliah::find($id);
         $krs = new TransaksiKrs;
+
         $krs->matakuliah_id = $matakuliah->id;
         $krs->tahun_ajaran = '2021';
         $krs->semester= $matakuliah->semester;
@@ -71,49 +72,6 @@ class KRSPegawaiController extends Controller
 
         $krs->save();
         return redirect()->route('pegawai.krs-index')->with('status', 'KRS Telah Ditambahkan');
-    }
-
-    public function approve($id)
-    {
-        $krs = TransaksiKrs::find($id);
-        $krs->status = 'disetujui'; 
-
-        $krs->update();
-
-        return redirect()->route('pegawai.krs-index')->with('status', 'Data KRS Mahasiswa Berhasil Disetujui');
-    }
-
-    public function showEditTableKRS($id) 
-    {
-        $krs = TransaksiKrs::find($id);
-
-        $formdata = [
-            'tahun_ajaran' => ['text', "Tahun Ajaran"],
-            'semester' => ['text', "semester", ],
-            'nilai' => ['text', "Nilai", ['A', 'B+', 'B', 'C+', 'D+', 'D', 'E']],
-            'status' => ['text', "Status", ['disetujui', 'ditolak', 'pending']],
-            'matakuliah_id' => ['int', "Matakuliah"],
-            'mahasiswa_id' => ['int', "Mahasiswa"],
-        ];
-
-        return view('pages.pegawai.krs.edit', compact('krs', 'formdata'));
-    }
-
-    public function saveEdit(Request $request, $id)
-    {
-        /* $request->view(); */
-        $krs = TransaksiKrs::find($id);
-
-        $krs->tahun_ajaran = $request->input('tahun_ajaran');
-        $krs->semester = $request->input('semester');
-        $krs->nilai = $request->input('nilai');
-        $krs->status = $request->input('status');
-        $krs->matakuliah_id = $request->input('mahasiswa_id');
-        $krs->mahasiswa_id= $request->input('mahasiswa_id');
-
-        $krs->update();
-
-        return redirect()->route('pegawai.krs-index')->with('status', 'Data KRS Mahasiswa Berhasil Disunting');
     }
 
     public function storeDeleteTableKRS($id) 

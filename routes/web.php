@@ -87,11 +87,11 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
         Route::post('krs/store/{id}', [KRSPegawaiController::class, 'storeKRS'])->name('krs-store', 'id');
 
         /* krs-edit pegawai */
-        Route::get('krs/edit/{id}', [KRSPegawaiController::class, 'showEditTableKRS'])->name('krs-edit', 'id');
-        Route::post('krs/storeedit/{id}', [KRSPegawaiController::class, 'storeEditTableKRS'])->name('krs-store-edit', 'id');
-        Route::post('krs/approve/{id}', [KRSPegawaiController::class, 'approve'])->name('krs-approve', 'id');
+        /* Route::get('krs/edit', [KRSPegawaiController::class, 'showEditTableKRS'])->name('krs-edit');*/
+        /* Route::post('krs/storeedit', [KRSPegawaiController::class, 'storeEditTableKRS'])->name('krs-store-edit');*/
 
         /* krs-delete pegawai */
+        /* Route::get('krs/delete', [KRSPegawaiController::class, 'showDeleteTableKRS'])->name('krs-delete');*/
         Route::post('krs/storedelete/{id}', [KRSPegawaiController::class, 'storeDeleteTableKRS'])->name('krs-store-delete', 'id');
     // ini fernando
     });
