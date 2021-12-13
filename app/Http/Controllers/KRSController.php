@@ -12,27 +12,6 @@ use DB;
 
 class KRSController extends Controller
 {
-    /* untuk searching list matakuliah yang dicari sama mahasiswa pake kode */
-    public function search(Request $request)
-    {
-        if ($request->ajax()) {
-            $output = "";
-            $listMataKuliahs = DB::table('matakuliah')->where('kode', 'LIKE', '%' . $request->search . "%")->get();
-        }
-
-        if ($listMataKuliahs) {
-            foreach ($listMataKuliahs as $key => $listMataKuliah) {
-                $output .  '<tr>' .
-                    '<td>' . $listMataKuliah->kode . '</td>' .
-                    '<td>' . $listMataKuliah->nama_matakuliah . '</td>' .
-                    '<td>' . $listMataKuliah->semester . '</td>' .
-                    '<td>' . $listMataKuliah->jam_mulai . '</td>' .
-                    '<td>' . $listMataKuliah->jam_selesai . '</td>' .
-                    '<\tr>';
-            }
-        }
-    }
-
     public function showTableKRS()
     {
         $mahasiswas = auth('mahasiswa')->user()->id;
