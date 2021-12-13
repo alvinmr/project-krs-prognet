@@ -5,7 +5,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('pegawai.krs-create') }}" class="btn btn-primary">Tambah KRS</a>
+            <a href="{{ route('mahasiswa.krs-create') }}" class="btn btn-primary">Tambah KRS</a>
         </div>
         <div class="card-body">
             <table id="tableMataKuliah" class="table">
