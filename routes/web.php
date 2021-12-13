@@ -93,6 +93,6 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
         /* krs-delete pegawai */
         /* Route::get('krs/delete', [KRSPegawaiController::class, 'showDeleteTableKRS'])->name('krs-delete');*/
         Route::post('krs/storedelete/{id}', [KRSPegawaiController::class, 'storeDeleteTableKRS'])->name('krs-store-delete', 'id');
-    // ini fernando
+        // ini fernando
     });
 });

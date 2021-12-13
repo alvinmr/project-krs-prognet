@@ -16,10 +16,10 @@
             @endif
             <div class="mb-3">
                 <label for="search_matakuliah" class="form-label">Cari Matakuliah</label>
-                <input type="text" class="form-control" id="search_matakuliah" placeholder="Kode Matakuliah">
+                <input type="text" class="form-control" id="searchMatkul" placeholder="Kode Matakuliah">
             </div>
 
-            <table class="table">
+            <table class="table" id="tableMahasiswa">
                 <thead>
                     <tr>
                         <th scope="col">Kode</th>
@@ -34,17 +34,18 @@
                 <tbody>
                     @foreach ($listMataKuliahs as $listMataKuliah)
                         <tr>
-                            <td>{{$listMataKuliah->kode}}</td>
-                            <td>{{$listMataKuliah->nama_matakuliah}}</td>
-                            <td>{{$listMataKuliah->semester}}</td>
-                            <td>{{$listMataKuliah->jumlah_sks}}</td>
-                            <td>{{$listMataKuliah->jam_mulai}}</td>
-                            <td>{{$listMataKuliah->jam_selesai}}</td>
+                            <td>{{ $listMataKuliah->kode }}</td>
+                            <td>{{ $listMataKuliah->nama_matakuliah }}</td>
+                            <td>{{ $listMataKuliah->semester }}</td>
+                            <td>{{ $listMataKuliah->jumlah_sks }}</td>
+                            <td>{{ $listMataKuliah->jam_mulai }}</td>
+                            <td>{{ $listMataKuliah->jam_selesai }}</td>
                             <td>
-                                <div class="btn-group" role="group" aria-label="Basic mixed style example">
-                                    <a href="{{ route('mahasiswa.krs-detail', ['id' => $listMataKuliah->id]) }}" type="button"
-                                        class="btn btn-success">Detail</a>
-                                    <form action="{{ route('mahasiswa.krs-store', ['id' => $listMataKuliah->id]) }}" method="POST"
+                                <div class="btn-group" role="group">
+                                    <a href="{{ route('mahasiswa.krs-detail', ['id' => $listMataKuliah->id]) }}"
+                                        type="button" class="btn btn-success">Detail</a>
+                                    <form action="{{ route('mahasiswa.krs-store', ['id' => $listMataKuliah->id]) }}"
+                                        method="POST"
                                         onsubmit="return confirm('Apakah Data ini ingin menambah Matakuliah ini kedalam KRS?')">
                                         @csrf
                                         <button type="submit" class="btn btn-success">Tambah</button>
@@ -57,12 +58,22 @@
             </table>
         </div>
     </div>
+    <style>
+        .dataTables_wrapper .dataTables_filter {
+            float: right;
+            text-align: right;
+            visibility: hidden;
+        }
+
+    </style>
 @endsection
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('#tableMahasiswa').DataTable();
+            var table = $('#tableMahasiswa').DataTable();
+            $('#searchMatkul').on('keyup', function() {
+                table.search(this.value).draw();
+            });
         });
     </script>
 @endpush
-
