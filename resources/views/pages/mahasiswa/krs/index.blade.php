@@ -31,7 +31,7 @@
                                     <td>{{ $item->matakuliah->jumlah_sks }}</td>
                                     <td>{{ $item->status }}</td>
                                     <td>
-                                        <form action="{{ route('mahasiswa.krs-store-delete', ['id' => $listKRS->id]) }}" method="POST"
+                                        <form action="{{ route('mahasiswa.krs-store-delete', ['id' => $item->id]) }}" method="POST"
                                             onsubmit="return confirm('Apakah Data ini ingin Menghapus Matakuliah ini ?')">
                                             @csrf
                                             <button type="submit" class="btn btn-danger">Hapus KRS</button>
