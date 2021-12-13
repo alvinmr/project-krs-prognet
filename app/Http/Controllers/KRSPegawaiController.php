@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\TransaksiKrs;
 use App\Models\Mahasiswa;
 use App\Models\Matakuliah;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\File;
 use DB;
+use Illuminate\Http\Request;
 
-class KRSController extends Controller
+class KRSPegawaiController extends Controller
 {
     /* untuk searching list matakuliah yang dicari sama mahasiswa pake kode */ 
     public function search(Request $request) 
@@ -38,26 +38,27 @@ class KRSController extends Controller
 
     public function showTableKRS() 
     {
-        $mahasiswas = auth('mahasiswa')->user()->id;
-        $listKRSs = TransaksiKrs::where('mahasiswa_id', '=', $mahasiswas)->get(); 
-        /* $listKRSs = TransaksiKrs::all(); */ 
-        return view('pages.mahasiswa.krs.index', compact('listKRSs', 'mahasiswas'));
-        /* return view('pages.mahasiswa.krs.index', compact('listKRSs')); */
+        /* $mahasiswas = auth('mahasiswa')->user()->id; */
+        /* $listKRSs = TransaksiKrs::where('mahasiswa_id', '=', $mahasiswas)->get(); */ 
+        $listKRSs = TransaksiKrs::all(); 
+        return view('pages.pegawai.krs.index', compact('listKRSs'));
     }
 
     public function showDetailMatakuliah($id)
     {
         $listMataKuliahs = Matakuliah::find($id);
-        return view('pages.mahasiswa.krs.detail', compact('listMataKuliahs')); 
+        return view('pages.pegawai.krs.detail', compact('listMataKuliahs')); 
     }
 
     public function showCreateTableKRS() 
     {
         $listMataKuliahs = Matakuliah::all();
-        return view("pages.mahasiswa.krs.create", compact('listMataKuliahs'));
+        return view("pages.pegawai.krs.create", compact('listMataKuliahs'));
     }
 
-    public function storeKRS($id) 
+
+    /* Disini mau buat nanti klik si mahasiswanya terus nanti idnya masukin sini; */
+    public function storeKRS(Request $id) 
     {
         $matakuliah = Matakuliah::find($id);
         $krs = new TransaksiKrs;
@@ -67,16 +68,15 @@ class KRSController extends Controller
         $krs->semester= $matakuliah->semester;
         $krs->nilai= 'A';
         $krs->status= 'pending';
-        $krs->mahasiswa_id = auth('mahasiswa')->user()->id;
+        $krs->mahasiswa_id = $id;
 
         $krs->save();
-        return redirect()->route('mahasiswa.krs-index')->with('status', 'KRS Telah Ditambahkan');
+        return redirect()->route('pegawai.krs-index')->with('status', 'KRS Telah Ditambahkan');
     }
 
     public function storeDeleteTableKRS($id) 
     {
         $krs = TransaksiKrs::where('id', $id)->delete();
-        return redirect()->route('mahasiswa.krs-index')->with('status', 'Data KRS Berhasil Dihapus');
+        return redirect()->route('pegawai.krs-index')->with('status', 'Data KRS Berhasil Dihapus');
     }
 }
-

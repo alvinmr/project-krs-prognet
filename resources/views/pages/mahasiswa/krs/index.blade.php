@@ -4,12 +4,16 @@
 
 @section('content')
     <div class="card">
+        <div class="card-header">
+            <a href="{{ route('pegawai.krs-create') }}" class="btn btn-primary">Tambah KRS</a>
+        </div>
         <div class="card-body">
-                <table class="table">
+                <table id="tableMataKuliah" class="table">
                     <thead>
                         <tr>
+                            <th scope="col">No</th>
                             <th scope="col">Kode Mata Kuliah</th>
-                            <th scope="col">Nama Kuliah</th>
+                            <th scope="col">Nama Mata Kuliah</th>
                             <th scope="col">Dosen Pengampu</th>
                             <th scope="col">Jumlah SKS</th>
                             <th scope="col">Status</th>
@@ -18,15 +22,15 @@
                     </thead>
                     <tbody>
                         <tr>
-                            @foreach ($listKRSs as $listKRS)
+                            @foreach ($listKRSs as $item)
                                 <tr>
-                                    <td>{{$listKRS->matakuliah->kode}}</td>
-                                    <td>{{$listKRS->matakuliah->nama_matakuliah}}</td>
-                                    <td>{{$listKRS->matakuliah->dosen->nama_dosen}}</td>
-                                    <td>{{$listKRS->matakuliah->semester}}</td>
-                                    <td>{{$listKRS->status}}</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->matakuliah->kode }}</td>
+                                    <td>{{ $item->matakuliah->nama_matakuliah }}</td>
+                                    <td>{{ $item->matakuliah->dosen->nama }}</td>
+                                    <td>{{ $item->matakuliah->jumlah_sks }}</td>
+                                    <td>{{ $item->status }}</td>
                                     <td>
-                                        <a class="btn btn-warning" href="{{route("mahasiswa.krs-edit")}}">Sunting KRS</a>
                                         <form action="{{ route('mahasiswa.krs-store-delete', ['id' => $listKRS->id]) }}" method="POST"
                                             onsubmit="return confirm('Apakah Data ini ingin Menghapus Matakuliah ini ?')">
                                             @csrf
@@ -39,6 +43,12 @@
                     </tbody>
                 </table>
         </div>
-        <a class="btn btn-success" href="{{route("mahasiswa.krs-create")}}">Ajukan KRS</a>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#tableMataKuliah').DataTable();
+        });
+    </script>
+@endpush

@@ -3,9 +3,10 @@
 @section('title', 'Membuat KRS')
 
 @section('content')
-
-
     <div class="card">
+        <div class="card-header">
+            <a href="{{ route('mahasiswa.krs-index') }}" class="btn btn-primary">Kembali</a>
+        </div>
         <div class="card-body">
             @if (session('status'))
                 <h6 class="alert alert-success alert-dismissible fade show">
@@ -24,6 +25,7 @@
                         <th scope="col">Kode</th>
                         <th scope="col">Matakuliah</th>
                         <th scope="col">Semester</th>
+                        <th scope="col">Jumlah SKS</th>
                         <th scope="col">Jam-Mulai</th>
                         <th scope="col">Jam-Selesai</th>
                         <th scope="col">Action</th>
@@ -35,6 +37,7 @@
                             <td>{{$listMataKuliah->kode}}</td>
                             <td>{{$listMataKuliah->nama_matakuliah}}</td>
                             <td>{{$listMataKuliah->semester}}</td>
+                            <td>{{$listMataKuliah->jumlah_sks}}</td>
                             <td>{{$listMataKuliah->jam_mulai}}</td>
                             <td>{{$listMataKuliah->jam_selesai}}</td>
                             <td>
@@ -52,27 +55,14 @@
                     @endforeach
                 </tbody>
             </table>
-                    <a href="{{ route('mahasiswa.krs-index') }}" type="button"
-                        class="btn btn-success">Kembali</a>
         </div>
     </div>
-
-    <script type="text/javascript">
-        $('#search').on('keyup',function()
-        {
-            $value=$(this).val();
-            $.ajax(
-            {
-                type    : 'get',
-                url     : '{{URL::to('search')}}',
-                data    : {'search':$value},
-                success : function(data){$('tbody').html(data);}
-            });
-        })
-    </script>
-
-    <script type="text/javascript">
-        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}'} });
-    </script>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#tableMahasiswa').DataTable();
+        });
+    </script>
+@endpush
 

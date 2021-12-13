@@ -5,6 +5,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaResource;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\KRSController;
+use App\Http\Controllers\KRSPegawaiController;
 use App\Http\Controllers\MatakuliahResource;
 use App\Models\Matakuliah;
 use Illuminate\Support\Facades\Route;
@@ -69,8 +70,29 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
         Route::resource('mahasiswa', MahasiswaResource::class);
         // Route matakuliah
         Route::resource('matakuliah', MatakuliahResource::class);
-        // Route CRUD dosen
         Route::resource('dosen', DosenResource::class);
-    });
+
+        /* Route::post('matakuliah/create', [PegawaiController::class, 'storeMatakuliah'])->name('matakuliah-store'); */
+        // Route CRUD dosen
+        /* Route::resource('dosen', DosenResource::class)->name('dosen-index'); */
+
+        /* krs pegawai*/
+        Route::get('krs', [KRSPegawaiController::class, 'showTableKRS'])->name('krs-index');
+
+        /* krs detail pegawai*/
+        Route::get('krs/detail/{id}', [KRSPegawaiController::class, 'showDetailMatakuliah'])->name('krs-detail', 'id');
+
+        /* krs-create pegawai */
+        Route::get('krs/create', [KRSPegawaiController::class, 'showCreateTableKRS'])->name('krs-create');
+        Route::post('krs/store/{id}', [KRSPegawaiController::class, 'storeKRS'])->name('krs-store', 'id');
+
+        /* krs-edit pegawai */
+        /* Route::get('krs/edit', [KRSPegawaiController::class, 'showEditTableKRS'])->name('krs-edit');*/
+        /* Route::post('krs/storeedit', [KRSPegawaiController::class, 'storeEditTableKRS'])->name('krs-store-edit');*/
+
+        /* krs-delete pegawai */
+        /* Route::get('krs/delete', [KRSPegawaiController::class, 'showDeleteTableKRS'])->name('krs-delete');*/
+        Route::post('krs/storedelete/{id}', [KRSPegawaiController::class, 'storeDeleteTableKRS'])->name('krs-store-delete', 'id');
     // ini fernando
+    });
 });

@@ -31,6 +31,12 @@
                     <span>Data Dosen</span>
                 </a>
             </li>
+            <li class="{{ Request::is('*/krs/*') || Request::is('*/krs') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('pegawai.krs-index') }}"><i
+                        class="fas fa-book"></i>
+                    <span>Data KRS Mahasiswa</span>
+                </a>
+            </li>
         </ul>
     </aside>
 </div>
