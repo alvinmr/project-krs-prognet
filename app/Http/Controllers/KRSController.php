@@ -70,7 +70,7 @@ class KRSController extends Controller
         $krs->mahasiswa_id = auth('mahasiswa')->user()->id;
 
         $krs->save();
-        return redirect()->route('mahasiswa.krs-index')->with('status', 'KRS Telah Ditambahkan');
+        return redirect()->route('mahasiswa.krs-create')->with('status', 'KRS Telah Ditambahkan');
     }
 
     public function storeDeleteTableKRS($id) 
