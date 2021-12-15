@@ -71,17 +71,7 @@
                     <div class="absolute-bottom-left index-2">
                         <div class="p-5 pb-2 text-light">
                             <div class="pb-3 mb-5">
-                                @if (date('H') > 0)
-                                    <h1 class="mb-2 display-4 font-weight-bold">Mornin' Sunshine!</h1>
-                                @elseif (date('H') > 6)
-                                    <h1 class="mb-2 display-4 font-weight-bold">Good Morning</h1>
-                                @elseif (date('H') > 12)
-                                    <h1 class="mb-2 display-4 font-weight-bold">Good Afternoon</h1>
-                                @elseif (date('H') > 17)
-                                    <h1 class="mb-2 display-4 font-weight-bold">Good Evening</h1>
-                                @elseif (date('H') > 22)
-                                    <h1 class="mb-2 display-4 font-weight-bold">Go To Bed!</h1>
-                                @endif
+                                <h1 class="mb-2 display-4 font-weight-bold">Hallo Selamat Datang!</h1>
                                 <h5 class="font-weight-normal text-muted-transparent">Bali, Indonesia</h5>
                             </div>
                             Photo on <a class="text-light bb" target="_blank" href="https://unsplash.com">Unsplash</a>
