@@ -42,20 +42,36 @@
                             <td>{{ $listMataKuliah->jam_selesai }}</td>
                             <td>
                                 <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle"
-                                        type="button" id="aksi_krs" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="aksi_krs"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Aksi
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="aksi_krs">
-                                    <a href="{{ route('mahasiswa.krs-detail', ['id' => $listMataKuliah->id]) }}"
-                                        type="button" class="dropdown-item">Detail</a>
+                                        <a href="{{ route('mahasiswa.krs-detail', ['id' => $listMataKuliah->id]) }}"
+                                            type="button" class="dropdown-item">Detail</a>
                                         <form action="{{ route('mahasiswa.krs-store', ['id' => $listMataKuliah->id]) }}"
-                                            method="POST"
-                                            onsubmit="return confirm('Apakah Data ini ingin menambah Matakuliah ini kedalam KRS?')">
+                                            method="POST" id="tambah-krs{{ $listMataKuliah->id }}">
                                             @csrf
-                                            <button type="submit" class="dropdown-item text-success">Tambah</button>
+                                            <a href="#" class="dropdown-item text-success"
+                                                id="btn-tambah-krs{{ $listMataKuliah->id }}">Tambah</a>
                                         </form>
+                                        @push('scripts')
+                                            <script>
+                                                $('#btn-tambah-krs{{ $listMataKuliah->id }}').on('click', function() {
+                                                    Swal.fire({
+                                                        title: 'Yakin ?',
+                                                        text: 'Apakah anda yakin ingin menambahkan matakuliah ini ke dalam KRS?',
+                                                        icon: 'question',
+                                                        showCancelButton: true,
+                                                        confirmButtonText: 'Yakin'
+                                                    }).then(res => {
+                                                        if (res.isConfirmed) {
+                                                            $('#tambah-krs{{ $listMataKuliah->id }}').submit()
+                                                        }
+                                                    })
+                                                })
+                                            </script>
+                                        @endpush
                                     </div>
                                 </div>
                             </td>
