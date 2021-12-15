@@ -132,7 +132,11 @@ class MatakuliahResource extends Controller
      */
     public function destroy(Matakuliah $matakuliah)
     {
-        $matakuliah->delete();
+        try {
+            $matakuliah->delete();
+        } catch (\Throwable $th) {
+            return redirect()->route('pegawai.matakuliah.index')->with('failed', 'Data gagal dihapus, kemungkinan karna data ini sudah berelasi dengan data lain');;
+        }
         return redirect()->route('pegawai.matakuliah.index')->with('success', 'Data berhasil dihapus');
     }
 }

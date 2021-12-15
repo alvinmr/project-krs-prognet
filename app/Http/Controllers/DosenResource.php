@@ -95,7 +95,12 @@ class DosenResource extends Controller
      */
     public function destroy(Dosen $dosen)
     {
-        $dosen->delete();
+
+        try {
+            $dosen->delete();
+        } catch (\Exception $e) {
+            return redirect()->route('pegawai.dosen.index')->with('failed', 'Data gagal dihapus, kemungkinan karna data ini sudah berelasi dengan data lain');
+        }
         return redirect()->route('pegawai.dosen.index')->with('success', 'Data berhasil dihapus');
     }
 }

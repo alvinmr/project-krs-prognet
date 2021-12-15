@@ -140,8 +140,12 @@ class MahasiswaResource extends Controller
      */
     public function destroy(Mahasiswa $mahasiswa)
     {
+        try {
+            $mahasiswa->delete();
+        } catch (\Exception $e) {
+            return redirect()->route('pegawai.mahasiswa.index')->with('failed', 'Data gagal dihapus, kemungkinan karna data ini sudah berelasi dengan data lain');
+        }
         Storage::delete('foto_mahasiswa/' . $mahasiswa->foto_mahasiswa);
-        $mahasiswa->delete();
         return redirect()->route('pegawai.mahasiswa.index')->with('success', 'Data berhasil dihapus');
     }
 }
