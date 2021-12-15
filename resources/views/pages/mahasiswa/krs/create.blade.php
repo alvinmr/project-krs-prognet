@@ -28,7 +28,7 @@
                         <th scope="col">Jumlah SKS</th>
                         <th scope="col">Jam-Mulai</th>
                         <th scope="col">Jam-Selesai</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,15 +41,22 @@
                             <td>{{ $listMataKuliah->jam_mulai }}</td>
                             <td>{{ $listMataKuliah->jam_selesai }}</td>
                             <td>
-                                <div class="btn-group" role="group">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle"
+                                        type="button" id="aksi_krs" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        Aksi
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="aksi_krs">
                                     <a href="{{ route('mahasiswa.krs-detail', ['id' => $listMataKuliah->id]) }}"
-                                        type="button" class="btn btn-success">Detail</a>
-                                    <form action="{{ route('mahasiswa.krs-store', ['id' => $listMataKuliah->id]) }}"
-                                        method="POST"
-                                        onsubmit="return confirm('Apakah Data ini ingin menambah Matakuliah ini kedalam KRS?')">
-                                        @csrf
-                                        <button type="submit" class="btn btn-success">Tambah</button>
-                                    </form>
+                                        type="button" class="dropdown-item">Detail</a>
+                                        <form action="{{ route('mahasiswa.krs-store', ['id' => $listMataKuliah->id]) }}"
+                                            method="POST"
+                                            onsubmit="return confirm('Apakah Data ini ingin menambah Matakuliah ini kedalam KRS?')">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item text-success">Tambah</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </td>
                         </tr>

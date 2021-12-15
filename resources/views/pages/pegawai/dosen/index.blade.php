@@ -28,13 +28,22 @@
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->telepon }}</td>
                             <td>
-                                <form action="{{ route('pegawai.dosen.destroy', $item->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Hapus</button>
-                                </form>
-                                <a href="{{ route('pegawai.dosen.edit', $item->id) }}"
-                                    class="btn btn-warning">Edit</a>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle"
+                                        type="button" id="aksi_krs" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        Aksi
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="aksi_krs">
+                                        <a href="{{ route('pegawai.dosen.edit', $item->id) }}"
+                                            class="dropdown-item">Edit</a>
+                                        <form action="{{ route('pegawai.dosen.destroy', $item->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="dropdown-item text-danger">Hapus</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

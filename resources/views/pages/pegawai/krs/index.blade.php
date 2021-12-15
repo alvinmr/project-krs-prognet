@@ -25,18 +25,21 @@
                             <td>{{ $item->angkatan }}</td>
                             <td>{{ $item->prodi->nama_prodi }}</td>
                             <td>
-                                <form action="{{ route('pegawai.krs-store-delete', $item->id) }}" method="post">
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger">Hapus</button>
-                                </form>
-                                <button class="btn btn-success" ype="button" data-toggle="modal"
-                                    data-target="#modal-krs{{ $loop->iteration }}">Lihat KRS</button>
-                                {{-- @if ($item->status != 'disetujui')
-                                    <form action="{{ route('pegawai.krs-approve', $item->id) }}" method="post">
-                                        @csrf
-                                        <button type="submit" class="btn btn-success">Approve</button>
-                                    </form>
-                                @endif --}}
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle"
+                                        type="button" id="aksi_krs" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        Aksi
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="aksi_krs">
+                                        <a class="dropdown-item" ype="button" data-toggle="modal"
+                                            data-target="#modal-krs{{ $loop->iteration }}">Lihat KRS</a>
+                                        <form action="{{ route('pegawai.krs-store-delete', $item->id) }}" method="post">
+                                            @csrf
+                                            <a type="submit" class="dropdown-item text-danger">Hapus</a>
+                                        </form>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         @push('modals')
@@ -88,8 +91,16 @@
                                                                         Aksi
                                                                     </button>
                                                                     <div class="dropdown-menu" aria-labelledby="aksi_krs">
-                                                                        <a class="dropdown-item " href="#">Setujui</a>
-                                                                        <a class="dropdown-item text-danger" href="#">Tolak</a>
+                                                                            <form action="{{ route('pegawai.krs-approve', ['id' => $krs->id]) }}" method="post"
+                                                                                onsubmit="return confirm('Apakah Data ini ingin menyetujui matakuliah ini dalam KRS Mahasiswa NIM {{ $item->nim }}?')">
+                                                                                @csrf
+                                                                            <button type="submit" class="dropdown-item text-success">Setujui</button>
+                                                                            </form>
+                                                                            <form action="{{ route('pegawai.krs-decline', ['id' => $krs->id]) }}" method="post"
+                                                                                onsubmit="return confirm('Apakah Data ini ingin menolak matakuliah ini dalam KRS Mahasiswa NIM {{ $item->nim }}?')">
+                                                                                @csrf
+                                                                            <button type="submit" class="dropdown-item text-danger">Tolak</button>
+                                                                            </form>
                                                                     </div>
                                                                 </div>
                                                             </td>

@@ -17,7 +17,7 @@
                         <th scope="col">Dosen Pengampu</th>
                         <th scope="col">Jumlah SKS</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -20,6 +20,15 @@ class KRSPegawaiController extends Controller
         return view('pages.pegawai.krs.index', compact($krs));
     }
 
+
+    public function decline($id)
+    {
+        $krs = TransaksiKrs::find($id);
+        $krs->status = 'ditolak';
+        $krs->update();
+        return view('pages.pegawai.krs.index', compact($krs));
+    }
+
     public function showTableKRS()
     {
         $mahasiswa = Mahasiswa::whereHas('transaksi_krs')->get();
