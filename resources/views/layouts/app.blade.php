@@ -74,6 +74,27 @@
     @stack('scripts')
     @stack('modals')
 
+    @if ($message = Session::get('success'))
+        <script>
+            Swal.fire({
+                title: 'Berhasil!',
+                text: '{{ $message }}',
+                icon: 'success',
+                confirmButtonText: 'Okay'
+            })
+        </script>
+    @endif
+    @if ($message = Session::get('failed'))
+        <script>
+            Swal.fire({
+                title: 'Gagal!',
+                text: '{{ $message }}',
+                icon: 'error',
+                confirmButtonText: 'Okay'
+            })
+        </script>
+    @endif
+
 
 </body>
 

@@ -66,7 +66,7 @@ class MatakuliahResource extends Controller
             'prodi_id' => $request->program_studi,
         ]);
 
-        return redirect()->route('pegawai.matakuliah.index');
+        return redirect()->route('pegawai.matakuliah.index')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -121,7 +121,7 @@ class MatakuliahResource extends Controller
             'prodi_id' => $request->program_studi,
         ]);
 
-        return redirect()->route('pegawai.matakuliah.index');
+        return redirect()->route('pegawai.matakuliah.index')->with('success', 'Data berhasil diupdate');
     }
 
     /**
@@ -133,6 +133,6 @@ class MatakuliahResource extends Controller
     public function destroy(Matakuliah $matakuliah)
     {
         $matakuliah->delete();
-        return redirect()->route('pegawai.matakuliah.index');
+        return redirect()->route('pegawai.matakuliah.index')->with('success', 'Data berhasil dihapus');
     }
 }

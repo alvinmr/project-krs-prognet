@@ -45,7 +45,7 @@ class DosenResource extends Controller
         ]);
         Dosen::create($request->all());
 
-        return redirect()->route('pegawai.dosen.index');
+        return redirect()->route('pegawai.dosen.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -84,7 +84,7 @@ class DosenResource extends Controller
             'email' => $request->email,
             'telepon' => $request->telepon,
         ]);
-        return redirect()->route('pegawai.dosen.index');
+        return redirect()->route('pegawai.dosen.index')->with('success', 'Data berhasil diupdate');
     }
 
     /**
@@ -96,6 +96,6 @@ class DosenResource extends Controller
     public function destroy(Dosen $dosen)
     {
         $dosen->delete();
-        return redirect()->route('pegawai.dosen.index');
+        return redirect()->route('pegawai.dosen.index')->with('success', 'Data berhasil dihapus');
     }
 }

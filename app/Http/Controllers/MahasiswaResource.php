@@ -67,7 +67,7 @@ class MahasiswaResource extends Controller
             'password' => Hash::make($nim)
         ]);
 
-        return redirect()->route('pegawai.mahasiswa.index');
+        return redirect()->route('pegawai.mahasiswa.index')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -112,6 +112,8 @@ class MahasiswaResource extends Controller
             $foto = $request->file('foto_mahasiswa');
             $nameFile = date('ymdhis') . '_' . $request->nama . '.' . $foto->getClientOriginalExtension();
             $foto->storeAs('foto_mahasiswa', $nameFile);
+            $mahasiswa->foto_mahasiswa = $nameFile;
+            $mahasiswa->save();
         }
 
         // Ngecek kalo ada perubahan prodi sama angkatan, bakal ngaruh ke nim nya juga
@@ -126,9 +128,8 @@ class MahasiswaResource extends Controller
             'telepon' => $request->telepon,
             'angkatan' => $request->angkatan,
             'prodi_id' => $request->prodi,
-            'foto_mahasiswa' => $nameFile
         ]);
-        return redirect()->route('pegawai.mahasiswa.index');
+        return redirect()->route('pegawai.mahasiswa.index')->with('success', 'Data berhasil diupdate');
     }
 
     /**
@@ -141,6 +142,6 @@ class MahasiswaResource extends Controller
     {
         Storage::delete('foto_mahasiswa/' . $mahasiswa->foto_mahasiswa);
         $mahasiswa->delete();
-        return redirect()->route('pegawai.mahasiswa.index');
+        return redirect()->route('pegawai.mahasiswa.index')->with('success', 'Data berhasil dihapus');
     }
 }

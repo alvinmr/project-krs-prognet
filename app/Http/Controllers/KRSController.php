@@ -41,17 +41,17 @@ class KRSController extends Controller
         $krs->matakuliah_id = $matakuliah->id;
         $krs->tahun_ajaran = '2021';
         $krs->semester = $matakuliah->semester;
-        $krs->nilai = 'A';
+        $krs->nilai = 'Tunda';
         $krs->status = 'pending';
         $krs->mahasiswa_id = auth('mahasiswa')->user()->id;
 
         $krs->save();
-        return redirect()->route('mahasiswa.krs-create')->with('status', 'KRS Telah Ditambahkan');
+        return redirect()->route('mahasiswa.krs-create')->with('success', 'KRS Telah Ditambahkan');
     }
 
     public function storeDeleteTableKRS($id)
     {
         $krs = TransaksiKrs::where('id', $id)->delete();
-        return redirect()->route('mahasiswa.krs-index')->with('status', 'Data KRS Berhasil Dihapus');
+        return redirect()->route('mahasiswa.krs-index')->with('success', 'KRS Berhasil Dihapus');
     }
 }

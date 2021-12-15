@@ -17,7 +17,7 @@ class KRSPegawaiController extends Controller
         $krs = TransaksiKrs::find($id);
         $krs->status = 'disetujui';
         $krs->save();
-        return redirect()->route('pegawai.krs-index');
+        return redirect()->route('pegawai.krs-index')->with('success', 'KRS berhasil diapprove');
     }
 
 
@@ -26,7 +26,7 @@ class KRSPegawaiController extends Controller
         $krs = TransaksiKrs::find($id);
         $krs->status = 'ditolak';
         $krs->save();
-        return redirect()->route('pegawai.krs-index');
+        return redirect()->route('pegawai.krs-index')->with('success', 'KRS berhasil ditolak');
     }
 
     public function showTableKRS()
@@ -57,17 +57,17 @@ class KRSPegawaiController extends Controller
         $krs->matakuliah_id = $matakuliah->id;
         $krs->tahun_ajaran = '2021';
         $krs->semester = $matakuliah->semester;
-        $krs->nilai = 'A';
+        $krs->nilai = 'Tunda';
         $krs->status = 'pending';
         $krs->mahasiswa_id = $id;
 
         $krs->save();
-        return redirect()->route('pegawai.krs-index')->with('status', 'KRS Telah Ditambahkan');
+        return redirect()->route('pegawai.krs-index')->with('success', 'KRS Telah Ditambahkan');
     }
 
     public function storeDeleteTableKRS($id)
     {
         $krs = TransaksiKrs::where('id', $id)->delete();
-        return redirect()->route('pegawai.krs-index')->with('status', 'Data KRS Berhasil Dihapus');
+        return redirect()->route('pegawai.krs-index')->with('success', 'Data KRS Berhasil Dihapus');
     }
 }
