@@ -16,8 +16,8 @@ class KRSPegawaiController extends Controller
     {
         $krs = TransaksiKrs::find($id);
         $krs->status = 'disetujui';
-        $krs->update();
-        return view('pages.pegawai.krs.index', compact($krs));
+        $krs->save();
+        return redirect()->route('pegawai.krs-index');
     }
 
 
@@ -25,8 +25,8 @@ class KRSPegawaiController extends Controller
     {
         $krs = TransaksiKrs::find($id);
         $krs->status = 'ditolak';
-        $krs->update();
-        return view('pages.pegawai.krs.index', compact($krs));
+        $krs->save();
+        return redirect()->route('pegawai.krs-index');
     }
 
     public function showTableKRS()

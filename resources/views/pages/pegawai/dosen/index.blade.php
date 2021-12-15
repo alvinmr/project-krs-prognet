@@ -29,19 +29,37 @@
                             <td>{{ $item->telepon }}</td>
                             <td>
                                 <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle"
-                                        type="button" id="aksi_krs" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="aksi_krs"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Aksi
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="aksi_krs">
                                         <a href="{{ route('pegawai.dosen.edit', $item->id) }}"
                                             class="dropdown-item">Edit</a>
-                                        <form action="{{ route('pegawai.dosen.destroy', $item->id) }}" method="post">
+                                        <form action="{{ route('pegawai.dosen.destroy', $item->id) }}"
+                                            id="hapus-dosen{{ $item->id }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="dropdown-item text-danger">Hapus</button>
+                                            <a href="#" class="dropdown-item text-danger"
+                                                id="btn-hapus-dosen{{ $item->id }}">Hapus</a>
                                         </form>
+                                        @push('scripts')
+                                            <script>
+                                                $('#btn-hapus-dosen{{ $item->id }}').on('click', function() {
+                                                    Swal.fire({
+                                                        title: 'Yakin ?',
+                                                        text: 'Apakah anda yakin ingin menghapus data ini?',
+                                                        icon: 'question',
+                                                        showCancelButton: true,
+                                                        confirmButtonText: 'Yakin'
+                                                    }).then(res => {
+                                                        if (res.isConfirmed) {
+                                                            $('#hapus-dosen{{ $item->id }}').submit()
+                                                        }
+                                                    })
+                                                })
+                                            </script>
+                                        @endpush
                                     </div>
                                 </div>
                             </td>
@@ -56,6 +74,7 @@
     <script>
         $(document).ready(function() {
             $('#tableDosen').DataTable();
+
         });
     </script>
 @endpush

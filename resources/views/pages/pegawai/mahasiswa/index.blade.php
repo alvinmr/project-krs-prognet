@@ -38,19 +38,37 @@
                             </td>
                             <td>
                                 <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle"
-                                        type="button" id="aksi_krs" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="aksi_krs"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Aksi
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="aksi_krs">
                                         <a href="{{ route('pegawai.mahasiswa.edit', $item->id) }}"
                                             class="dropdown-item">Edit</a>
-                                        <form action="{{ route('pegawai.mahasiswa.destroy', $item->id) }}" method="post">
+                                        <form action="{{ route('pegawai.mahasiswa.destroy', $item->id) }}" method="post"
+                                            id="hapus-mahasiswa{{ $item->id }}">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="dropdown-item text-danger">Hapus</button>
+                                            <a href="#" class="dropdown-item text-danger"
+                                                id="btn-hapus-mahasiswa{{ $item->id }}">Hapus</a>
                                         </form>
+                                        @push('scripts')
+                                            <script>
+                                                $('#btn-hapus-mahasiswa{{ $item->id }}').on('click', function() {
+                                                    Swal.fire({
+                                                        title: 'Menyetujui ?',
+                                                        text: 'Apakah anda yakin ingin data ini?',
+                                                        icon: 'question',
+                                                        showCancelButton: true,
+                                                        confirmButtonText: 'Yakin'
+                                                    }).then(res => {
+                                                        if (res.isConfirmed) {
+                                                            $('#hapus-mahasiswa{{ $item->id }}').submit()
+                                                        }
+                                                    })
+                                                })
+                                            </script>
+                                        @endpush
                                     </div>
                                 </div>
                             </td>
