@@ -1,0 +1,30 @@
+Data Seeder yang lebih lengkap lagi
+
+Bisa Ditambahkan gimana caranya gimana setting untuk tahun ajaran dan semesternya 
+Jadi untuk setiap matakuliahnya itu disetting tahun ajaran semesternya 
+Jadi dicek berapa banyak mata pelajaran setiap semesternya.
+
+Selain KRS terdapat terdapat Input Nilai.
+Terdapat Report juga jadi setiap mahasiswanya seperti mahasiswanya dimunculkan 
+sehingga nantinya setiap mahasiswa terdapat penilaian. 
+
+Jadi setiap Mahasiswa nantinya Per Kelas atau Per Matakuliah dari sisi pegawai.
+
+Pegawainya harus dapet banyak daftar jadi setiap pegawai punya banyak data.
+
+Jadi cara memasukannya jangan per mahasiswa HARUS PERMATAKULIAH.
+
+TAMBAHKAN KHS jadi dari KHS tersebut bisa 
+
+Bisa membuat Report lain : mahasiswa dengan index blablablabla.
+
+Naik turunnya nilai Mahasiswa.
+
+Notulensi asis :
+1. Input Nilai (Khs)
+2. Isi NIM di profil login
+3. Data sider lebih lengkap
+4. Tambah report" lainnya (perkembangan studi - grafik naik turun)
+5. Setting tahun ajaran
+
+Asis demo selanjutnya akan ditentukan jadwalnya, (Minggu depan diumumkan)
