@@ -120,7 +120,6 @@ class MatakuliahResource extends Controller
             'dosen_id' => $request->dosen,
             'prodi_id' => $request->program_studi,
         ]);
-
         return redirect()->route('pegawai.matakuliah.index')->with('success', 'Data berhasil diupdate');
     }
 
