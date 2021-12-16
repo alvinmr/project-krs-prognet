@@ -102,7 +102,7 @@
                     <label for="program_studi">Program Studi</label>
                     <select name="program_studi" class="form-control @error('program_studi') is-invalid @enderror"
                         id="program_studi">
-                        <option disabled selected>--Pilih Dosen--</option>
+                        <option disabled selected>--Pilih Program Studi</option>
                         @foreach ($program_studi as $item)
                             <option value="{{ $item->id }}"
                                 {{ old('program_studi', $matakuliah->prodi_id) == $item->id ? 'selected' : '' }}>
