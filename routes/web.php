@@ -90,7 +90,9 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
         /* krs-edit pegawai */
         /* Route::get('krs/edit', [KRSPegawaiController::class, 'showEditTableKRS'])->name('krs-edit');*/
         /* Route::post('krs/storeedit', [KRSPegawaiController::class, 'storeEditTableKRS'])->name('krs-store-edit');*/
-
+    
+        BUKAN KRSANNNNNNNNNNNNNn
+            
         /* krs-delete pegawai */
         /* Route::get('krs/delete', [KRSPegawaiController::class, 'showDeleteTableKRS'])->name('krs-delete');*/
         Route::post('krs/storedelete/{id}', [KRSPegawaiController::class, 'storeDeleteTableKRS'])->name('krs-store-delete', 'id');
