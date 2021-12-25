@@ -5,7 +5,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('pegawai.tahunajaran.store') }}" method="post">
+            <form action="{{ route('pegawai.tahunajaran-store') }}" method="post">
                 @csrf
                 <div class="form-group">
                     <label for="nama">Tahun Ajaran</label>

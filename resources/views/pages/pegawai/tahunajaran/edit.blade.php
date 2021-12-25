@@ -5,7 +5,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('pegawai.tahunajaran.update', $tahunajaran->id) }}" method="post">
+            <form action="{{ route('pegawai.tahunajaran-update', $tahunajaran->id) }}" method="post">
                 @csrf
                 @method('PUT')
                 <div class="form-group">

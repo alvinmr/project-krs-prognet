@@ -37,6 +37,12 @@
                     <span>Data KRS Mahasiswa</span>
                 </a>
             </li>
+            <li class="{{ Request::is('*/tahunajaran/*') || Request::is('*/tahunajaran') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('pegawai.tahunajaran-index') }}"><i
+                        class="fas fa-book"></i>
+                    <span>Data Tahun Ajaran</span>
+                </a>
+            </li>
         </ul>
     </aside>
 </div>
