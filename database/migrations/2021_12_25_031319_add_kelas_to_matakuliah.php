@@ -14,7 +14,7 @@ class AddKelasToMatakuliah extends Migration
     public function up()
     {
         Schema::table('matakuliah', function (Blueprint $table) {
-            $table->string('kelas')->after('jumlah_sks');
+            $table->char('kelas', 2)->after('jumlah_sks');
         });
     }
 
