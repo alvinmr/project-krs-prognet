@@ -48,8 +48,7 @@ class TahunAjaranResource extends Controller
             'nama' => $request->nama
         ]);
 
-        return redirect()->route
-        ('pegawai.tahunajaran.index')->with('success', 'Data berhasil disimpan');
+        return redirect()->route('pegawai.tahunajaran-index')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -69,9 +68,9 @@ class TahunAjaranResource extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(TahunAjaran $tahunajaran)
+    public function edit($id)
     {
-        $tahunajaran = TahunAjaran::all();
+        $tahunajaran = TahunAjaran::find($id);
         return view('pages.pegawai.tahunajaran.edit', compact('tahunajaran'));
     }
 
@@ -100,13 +99,14 @@ class TahunAjaranResource extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TahunAjaran $tahunajaran)
+    public function destroy($id)
     {
         try {
+            $tahunajaran=TahunAjaran::find($id);
             $tahunajaran->delete();
         } catch (\Throwable $th) {
-            return redirect()->route('pegawai.tahunajaran.index')->with('failed', 'Data gagal dihapus, kemungkinan karna data ini sudah berelasi dengan data lain');;
+            return redirect()->route('pegawai.tahunajaran-index')->with('failed', 'Data gagal dihapus, kemungkinan karna data ini sudah berelasi dengan data lain');;
         }
-        return redirect()->route('pegawai.tahunajaran.index')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('pegawai.tahunajaran-index')->with('success', 'Data berhasil dihapus');
     }
 }
