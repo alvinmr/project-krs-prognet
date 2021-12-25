@@ -11,4 +11,6 @@ class TahunAjaran extends Model
 
     protected $table = 'tahun_ajaran';
     protected $guarded = [];
+
+    public $timestamps = false;
 }
