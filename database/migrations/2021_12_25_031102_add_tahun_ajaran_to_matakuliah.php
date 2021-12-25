@@ -14,7 +14,7 @@ class AddTahunAjaranToMatakuliah extends Migration
     public function up()
     {
         Schema::table('matakuliah', function (Blueprint $table) {
-            $table->string('tahun_ajaran');
+            $table->foreignId('tahun_ajaran_id')->constrained('tahun_ajaran');
         });
     }
 
@@ -26,7 +26,7 @@ class AddTahunAjaranToMatakuliah extends Migration
     public function down()
     {
         Schema::table('matakuliah', function (Blueprint $table) {
-            $table->dropColumn('tahun_ajaran');
+            $table->dropColumn('tahun_ajaran_id');
         });
     }
 }
