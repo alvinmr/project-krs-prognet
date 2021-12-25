@@ -15,9 +15,9 @@ class MahasiswaSeeder extends Seeder
      */
     public function run()
     {
-        $nama = ['Heri', 'Yonda', 'Jojo'];
-        $nim = ['2005551010', '1905551010', '1805551010'];
-        $angkatan = ['2020', '2019', '2018'];
+        $nama = ['Heri', 'Yonda', 'Jojo', 'Rico Wijaya', 'Abel Jollando'];
+        $nim = ['2005551010', '1905551010', '1805551010', '2005551091', '2005551081'];
+        $angkatan = ['2020', '2019', '2018', '2020', '2020'];
 
         for ($i = 0; $i < 3; $i++) {
             Mahasiswa::insert([
