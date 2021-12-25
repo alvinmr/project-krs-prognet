@@ -30,15 +30,16 @@ DB::table("dosen")->insert([
 ])
 
 DB::table("matakuliah")->insert([
-    "kode" => "TI2020I",
-    "nama_matakuliah" => "Assembly Language",
-    "semester" => "Ganjil", 
-    "jumlah_sks" => "3", 
-    "status_matakuliah" => "Wajib",
-    "jam_mulai" => "10:00",
-    "jam_selesai" => "12:00",
-    "dosen_id" => "1",
-    "prodi_id" => "1"
+    'kode' => 'TI2020I',
+    'nama_matakuliah' => 'Assembly Language',
+    'semester' => 'Ganjil', 
+    'jumlah_sks' => '3', 
+    'kelas'=>'C',
+    'status_matakuliah' => 'Wajib',
+    'jam_mulai' => '10:00',
+    'jam_selesai' => '12:00',
+    'dosen_id' => '1',
+    'prodi_id' => '1'
 ])
 
 DB::table("transaksi_krs")->insert([
