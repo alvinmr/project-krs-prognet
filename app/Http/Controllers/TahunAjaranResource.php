@@ -48,7 +48,8 @@ class TahunAjaranResource extends Controller
             'nama' => $request->nama
         ]);
 
-        return redirect()->route('pegawai.tahunajaran.index')->with('success', 'Data berhasil disimpan');
+        return redirect()->route
+        ('pegawai.tahunajaran.index')->with('success', 'Data berhasil disimpan');
     }
 
     /**
