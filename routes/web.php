@@ -81,38 +81,10 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
         Route::get('krs/create', [KRSPegawaiController::class, 'showCreateTableKRS'])->name('krs-create');
         Route::post('krs/store/{id}', [KRSPegawaiController::class, 'storeKRS'])->name('krs-store', 'id');
         Route::post('krs/approve/{id}', [KRSPegawaiController::class, 'approve'])->name('krs-approve', 'id');
-        Route::post('krs/decline/{id}', [KRSPegawaiController::class, 'decline'])->name('krs-decline', 'id');
+        Route::post('krs/approve-all/{id}', [KRSPegawaiController::class, 'approveAll'])->name('krs-approve-all');
+        Route::post('krs/decline/{id}', [KRSPegawaiController::class, 'decline'])->name('krs-decline');
+        Route::post('krs/decline-all/{id}', [KRSPegawaiController::class, 'declineAll'])->name('krs-decline-all');
 
-        /* krs-edit pegawai */
-        /* Route::get('krs/edit', [KRSPegawaiController::class, 'showEditTableKRS'])->name('krs-edit');*/
-        /* Route::post('krs/storeedit', [KRSPegawaiController::class, 'storeEditTableKRS'])->name('krs-store-edit');*/
-
-        /* krs-delete pegawai */
-        /* Route::get('krs/delete', [KRSPegawaiController::class, 'showDeleteTableKRS'])->name('krs-delete');*/
-        Route::post('krs/storedelete/{id}', [KRSPegawaiController::class, 'storeDeleteTableKRS'])->name('krs-store-delete', 'id');
-        // ini fernando
-        Route::post('logout', [PegawaiController::class, 'logout']);
-        Route::get('dashboard', [PegawaiController::class, 'dashboard'])->name('dashboard');
-
-
-        /* krs pegawai*/
-        Route::get('krs', [KRSPegawaiController::class, 'showTableKRS'])->name('krs-index');
-
-        /* krs detail pegawai*/
-        Route::get('krs/detail/{id}', [KRSPegawaiController::class, 'showDetailMatakuliah'])->name('krs-detail', 'id');
-
-        /* krs-create pegawai */
-        Route::get('krs/create', [KRSPegawaiController::class, 'showCreateTableKRS'])->name('krs-create');
-        Route::post('krs/store/{id}', [KRSPegawaiController::class, 'storeKRS'])->name('krs-store', 'id');
-        Route::post('krs/approve/{id}', [KRSPegawaiController::class, 'approve'])->name('krs-approve', 'id');
-
-        /* krs-edit pegawai */
-        /* Route::get('krs/edit', [KRSPegawaiController::class, 'showEditTableKRS'])->name('krs-edit');*/
-        /* Route::post('krs/storeedit', [KRSPegawaiController::class, 'storeEditTableKRS'])->name('krs-store-edit');*/
-
-        /* krs-delete pegawai */
-        /* Route::get('krs/delete', [KRSPegawaiController::class, 'showDeleteTableKRS'])->name('krs-delete');*/
-        Route::post('krs/storedelete/{id}', [KRSPegawaiController::class, 'storeDeleteTableKRS'])->name('krs-store-delete', 'id');
 
         /* pegawai tahun ajaran */
         Route::get('tahunajaran', [TahunAjaranResource::class, 'index'])->name('tahunajaran-index');
