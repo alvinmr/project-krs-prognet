@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @livewireStyles
 </head>
 
 <body>
@@ -96,6 +97,18 @@
     @endif
 
 
+
+    @livewireScripts
+    <script>
+        Livewire.on('nilai-update', () => {
+            Swal.fire({
+                title: 'Berhasil!',
+                text: 'Berhasil memasukkan nilai',
+                icon: 'success',
+                confirmButtonText: 'Okay'
+            })
+        })
+    </script>
 </body>
 
 </html>

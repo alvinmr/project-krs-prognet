@@ -44,7 +44,8 @@
                 </a>
             </li>
             <li class="{{ Request::is('*/input-nilai/*') || Request::is('*/input-nilai') ? 'active' : '' }}">
-                <a class="nav-link" href="#"><i class="fas fa-tasks"></i>
+                <a class="nav-link" href="{{ route('pegawai.input-nilai.index') }}"><i
+                        class="fas fa-tasks"></i>
                     <span>Input Nilai</span>
                 </a>
             </li>

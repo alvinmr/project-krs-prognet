@@ -13,6 +13,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,7 +41,7 @@
                                                 $('#btn-hapus-tahunajaran{{ $item->id }}').on('click', function() {
                                                     Swal.fire({
                                                         title: 'Menyetujui ?',
-                                                        text: 'Apakah anda yakin ingin data ini?',
+                                                        text: 'Apakah anda yakin ingin menghapus data ini?',
                                                         icon: 'question',
                                                         showCancelButton: true,
                                                         confirmButtonText: 'Yakin'

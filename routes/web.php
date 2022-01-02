@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DosenResource;
+use App\Http\Controllers\InputNilaiKRSController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaResource;
 use App\Http\Controllers\PegawaiController;
@@ -92,8 +93,6 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
         // ini fernando
         Route::post('logout', [PegawaiController::class, 'logout']);
         Route::get('dashboard', [PegawaiController::class, 'dashboard'])->name('dashboard');
-        // Route CRUD mahasiswa 
-        Route::resource('mahasiswa', MahasiswaResource::class);
 
 
         /* krs pegawai*/
@@ -123,6 +122,6 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
         Route::post('tahunajaran/storeupdate/{id}', [TahunAjaranResource::class, 'update'])->name('tahunajaran-update', 'id');
         Route::post('tahunajaran/storedelete/{id}', [TahunAjaranResource::class, 'destroy'])->name('tahunajaran-delete', 'id');
 
-        // ini fernando
+        Route::resource('input-nilai', InputNilaiKRSController::class);
     });
 });
