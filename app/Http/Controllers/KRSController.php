@@ -29,7 +29,9 @@ class KRSController extends Controller
 
     public function showCreateTableKRS()
     {
-        $listMataKuliahs = Matakuliah::all();
+        $listMataKuliahs = Matakuliah::whereDoesntHave('transaksi_krs', function ($query) {
+            $query->where('mahasiswa_id', '=', auth('mahasiswa')->user()->id);
+        })->get();
         return view("pages.mahasiswa.krs.create", compact('listMataKuliahs'));
     }
 
