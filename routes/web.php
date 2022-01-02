@@ -8,7 +8,6 @@ use App\Http\Controllers\KRSController;
 use App\Http\Controllers\KRSPegawaiController;
 use App\Http\Controllers\MatakuliahResource;
 use App\Http\Controllers\TahunAjaranResource;
-use App\Models\Matakuliah;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,15 +66,9 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
     Route::middleware('auth:pegawai')->group(function () {
         Route::post('logout', [PegawaiController::class, 'logout']);
         Route::get('dashboard', [PegawaiController::class, 'dashboard'])->name('dashboard');
-        // Route CRUD mahasiswa 
         Route::resource('mahasiswa', MahasiswaResource::class);
-        // Route matakuliah
         Route::resource('matakuliah', MatakuliahResource::class);
         Route::resource('dosen', DosenResource::class);
-
-        /* Route::post('matakuliah/create', [PegawaiController::class, 'storeMatakuliah'])->name('matakuliah-store'); */
-        // Route CRUD dosen
-        /* Route::resource('dosen', DosenResource::class)->name('dosen-index'); */
 
         /* krs pegawai*/
         Route::get('krs', [KRSPegawaiController::class, 'showTableKRS'])->name('krs-index');
@@ -101,13 +94,7 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
         Route::get('dashboard', [PegawaiController::class, 'dashboard'])->name('dashboard');
         // Route CRUD mahasiswa 
         Route::resource('mahasiswa', MahasiswaResource::class);
-        // Route matakuliah
-        Route::resource('matakuliah', MatakuliahResource::class);
-        Route::resource('dosen', DosenResource::class);
 
-        /* Route::post('matakuliah/create', [PegawaiController::class, 'storeMatakuliah'])->name('matakuliah-store'); */
-        // Route CRUD dosen
-        /* Route::resource('dosen', DosenResource::class)->name('dosen-index'); */
 
         /* krs pegawai*/
         Route::get('krs', [KRSPegawaiController::class, 'showTableKRS'])->name('krs-index');
@@ -128,14 +115,14 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
         /* Route::get('krs/delete', [KRSPegawaiController::class, 'showDeleteTableKRS'])->name('krs-delete');*/
         Route::post('krs/storedelete/{id}', [KRSPegawaiController::class, 'storeDeleteTableKRS'])->name('krs-store-delete', 'id');
 
-        /* pegawai tahun ajaran */ 
+        /* pegawai tahun ajaran */
         Route::get('tahunajaran', [TahunAjaranResource::class, 'index'])->name('tahunajaran-index');
         Route::get('tahunajaran/create', [TahunAjaranResource::class, 'create'])->name('tahunajaran-create');
         Route::post('tahunajaran/store', [TahunAjaranResource::class, 'storeTahunAjaran'])->name('tahunajaran-store');
         Route::get('tahunajaran/edit/{id}', [TahunAjaranResource::class, 'edit'])->name('tahunajaran-edit', 'id');
         Route::post('tahunajaran/storeupdate/{id}', [TahunAjaranResource::class, 'update'])->name('tahunajaran-update', 'id');
         Route::post('tahunajaran/storedelete/{id}', [TahunAjaranResource::class, 'destroy'])->name('tahunajaran-delete', 'id');
-        
+
         // ini fernando
     });
 });
