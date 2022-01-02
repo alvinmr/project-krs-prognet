@@ -137,14 +137,22 @@
                                                                 <td colspan="10">Data Kosong</td>
                                                             </tr>
                                                         @endforelse
-
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                            <form action="{{ route('pegawai.krs-approve-all', $krs->mahasiswa->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-success">Setujui Semua</button>
+                                            </form>
+                                            <form action="{{ route('pegawai.krs-decline-all', $krs->mahasiswa->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger">Tolak Semua</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TransaksiKrs;
 use App\Models\Mahasiswa;
 use App\Models\Matakuliah;
+use App\Models\TahunAjaran;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\File;
 use DB;
@@ -20,12 +21,28 @@ class KRSPegawaiController extends Controller
         return redirect()->route('pegawai.krs-index')->with('success', 'KRS berhasil diapprove');
     }
 
+    public function approveAll($id)
+    {
+        TransaksiKrs::whereMahasiswaId($id)->update([
+            'status' => 'disetujui',
+        ]);
+        return redirect()->route('pegawai.krs-index')->with('success', 'KRS berhasil diapprove');
+    }
+
 
     public function decline($id)
     {
         $krs = TransaksiKrs::find($id);
         $krs->status = 'ditolak';
         $krs->save();
+        return redirect()->route('pegawai.krs-index')->with('success', 'KRS berhasil ditolak');
+    }
+
+    public function declineAll($id)
+    {
+        TransaksiKrs::whereMahasiswaId($id)->update([
+            'status' => 'ditolak',
+        ]);
         return redirect()->route('pegawai.krs-index')->with('success', 'KRS berhasil ditolak');
     }
 
