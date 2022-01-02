@@ -31,7 +31,9 @@ class KRSPegawaiController extends Controller
 
     public function showTableKRS()
     {
-        $mahasiswa = Mahasiswa::whereHas('transaksi_krs')->get();
+        $mahasiswa = Mahasiswa::whereHas('transaksi_krs', function ($query) {
+            $query->where('status', '!=', 'disetujui');
+        })->get();
         return view('pages.pegawai.krs.index', compact('mahasiswa'));
     }
 
