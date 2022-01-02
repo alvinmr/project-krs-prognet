@@ -7,6 +7,7 @@ use App\Models\Matakuliah;
 use App\Models\Prodi;
 use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TahunAjaranResource extends Controller
 {
@@ -47,6 +48,7 @@ class TahunAjaranResource extends Controller
         TahunAjaran::create([
             'nama' => $request->nama
         ]);
+        DB::table('mahasiswa')->update(['semester' => DB::raw('semester+1')]);
 
         return redirect()->route('pegawai.tahunajaran-index')->with('success', 'Data berhasil disimpan');
     }
@@ -86,7 +88,7 @@ class TahunAjaranResource extends Controller
         $request->validate([
             'nama' => 'required'
         ]);
-        
+
         $tahunajaran->update([
             'nama' => $request->nama
         ]);
@@ -102,7 +104,7 @@ class TahunAjaranResource extends Controller
     public function destroy($id)
     {
         try {
-            $tahunajaran=TahunAjaran::find($id);
+            $tahunajaran = TahunAjaran::find($id);
             $tahunajaran->delete();
         } catch (\Throwable $th) {
             return redirect()->route('pegawai.tahunajaran-index')->with('failed', 'Data gagal dihapus, kemungkinan karna data ini sudah berelasi dengan data lain');;
