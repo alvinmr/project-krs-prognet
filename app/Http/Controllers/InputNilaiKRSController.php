@@ -17,7 +17,7 @@ class InputNilaiKRSController extends Controller
      */
     public function index()
     {
-        $matakuliah = Matakuliah::whereTahunAjaranId(TahunAjaran::first()->id)->with('transaksi_krs')->get();
+        $matakuliah = Matakuliah::whereTahunAjaranId(TahunAjaran::orderBy('id', 'desc')->first()->id)->get();
         return view('pages.pegawai.input-nilai.index', compact('matakuliah'));
     }
 
