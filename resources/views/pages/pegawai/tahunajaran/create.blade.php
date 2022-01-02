@@ -10,7 +10,7 @@
                 <div class="form-group">
                     <label for="nama">Tahun Ajaran</label>
                     <input type="text" class="form-control @error('nama_') is-invalid @enderror"
-                        id="nama" placeholder="Contoh : Tahun Ajaran 2020/2021" name="nama"
+                        id="nama" placeholder="Contoh : Genap 2020/2021" name="nama"
                         value="{{ old('nama') }}">
                     @error('nama')
                         <div class="invalid-feedback">
