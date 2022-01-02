@@ -28,6 +28,11 @@ class Matakuliah extends Model
         return $this->belongsTo(Prodi::class);
     }
 
+    public function transaksi_krs()
+    {
+        return $this->hasMany(TransaksiKrs::class);
+    }
+
     public static function getEnumKey($name)
     {
         $instance = new static; // create an instance of the model to be able to get the table name
