@@ -47,4 +47,5 @@
             $('#tableDosen').DataTable();
         });
     </script>
+
 @endpush

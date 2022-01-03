@@ -13,7 +13,7 @@ class Matakuliah extends Model
     protected $table = 'matakuliah';
     protected $fillable = [
         'kode', 'nama_matakuliah', 'jumlah_sks', 'semester', 'status_matakuliah',
-        'jam_mulai', 'jam_selesai', 'dosen_id', 'prodi_id'
+        'jam_mulai', 'jam_selesai', 'dosen_id', 'prodi_id', 'kelas', 'tahun_ajaran_id'
     ];
 
     public $timestamps = false;
@@ -26,6 +26,11 @@ class Matakuliah extends Model
     public function prodi()
     {
         return $this->belongsTo(Prodi::class);
+    }
+
+    public function mahasiswa()
+    {
+        return $this->belongsToMany(Mahasiswa::class, 'transaksi_krs');
     }
 
     public function transaksi_krs()

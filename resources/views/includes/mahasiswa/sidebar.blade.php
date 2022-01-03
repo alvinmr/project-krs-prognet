@@ -19,6 +19,12 @@
                     <span>KRS Ku</span>
                 </a>
             </li>
+            <li class="{{ Request::is('*/khs/*') || Request::is('*/khs') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('mahasiswa.khs.index') }}"><i
+                        class="fas fa-graduation-cap"></i>
+                    <span>KHS Ku</span>
+                </a>
+            </li>
         </ul>
     </aside>
 </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DosenResource;
 use App\Http\Controllers\InputNilaiKRSController;
+use App\Http\Controllers\KHSMahasiswaController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaResource;
 use App\Http\Controllers\PegawaiController;
@@ -54,6 +55,8 @@ Route::prefix('mahasiswa/')->name('mahasiswa.')->group(function () {
     /* krs-delete */
     Route::get('krs/delete', [KRSController::class, 'showDeleteTableKRS'])->name('krs-delete')->middleware('auth:mahasiswa');
     Route::post('krs/storedelete/{id}', [KRSController::class, 'storeDeleteTableKRS'])->name('krs-store-delete', 'id')->middleware('auth:mahasiswa');
+
+    Route::resource('khs', KHSMahasiswaController::class);
 });
 
 Route::prefix('pegawai/')->name('pegawai.')->group(function () {
