@@ -19,13 +19,15 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="semester">Semester</label>
-                    <select name="semester" class="form-control @error('semester') is-invalid @enderror" id="semester">
-                        <option disabled selected>--Pilih Semester--</option>
-                        <option value="ganjil">Ganjil</option>
-                        <option value="genap">Genap</option>
+                    <label for="kelas">Kelas</label>
+                    <select name="kelas" class="form-control @error('kelas') is-invalid @enderror" id="kelas">
+                        <option disabled selected>--Pilih Kelas--</option>
+                        <option value="A" {{ old('kelas') == 'A' ? 'selected' : '' }}>A</option>
+                        <option value="B" {{ old('kelas') == 'B' ? 'selected' : '' }}>B</option>
+                        <option value="C" {{ old('kelas') == 'C' ? 'selected' : '' }}>C</option>
+                        <option value="D" {{ old('kelas') == 'D' ? 'selected' : '' }}>D</option>
                     </select>
-                    @error('semester')
+                    @error('kelas')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -47,7 +49,8 @@
                         id="status_matakuliah">
                         <option disabled selected>--Pilih Status Matkul--</option>
                         @foreach ($status_matakuliah as $item)
-                            <option value="{{ $item }}" {{ old('status_matakuliah') == $item ? 'selected' : '' }}>
+                            <option value="{{ $item }}"
+                                {{ old('status_matakuliah') == $item ? 'selected' : '' }}>
                                 {{ $item }}</option>
                         @endforeach
                     </select>
@@ -104,6 +107,23 @@
                         @endforeach
                     </select>
                     @error('program_studi')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="tahun_ajaran">Tahun Ajaran</label>
+                    <select name="tahun_ajaran" class="form-control @error('tahun_ajaran') is-invalid @enderror"
+                        id="tahun_ajaran">
+                        <option disabled selected>--Pilih Tahun Ajaran--</option>
+                        @foreach ($tahun_ajaran as $item)
+                            <option value="{{ $item->id }}"
+                                {{ old('tahun_ajaran') == $item->id ? 'selected' : '' }}>
+                                {{ $item->nama }}</option>
+                        @endforeach
+                    </select>
+                    @error('tahun_ajaran')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>

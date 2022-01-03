@@ -20,13 +20,15 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="semester">Semester</label>
-                    <select name="semester" class="form-control @error('semester') is-invalid @enderror" id="semester">
-                        <option disabled selected>--Pilih Semester--</option>
-                        <option value="ganjil" {{ $matakuliah->semester == 'ganjil' ? 'selected' : '' }}>Ganjil</option>
-                        <option value="genap" {{ $matakuliah->semester == 'genap' ? 'selected' : '' }}>Genap</option>
+                    <label for="kelas">Kelas</label>
+                    <select name="kelas" class="form-control @error('kelas') is-invalid @enderror" id="kelas">
+                        <option disabled selected>--Pilih kelas--</option>
+                        <option value="A" {{ $matakuliah->kelas == 'A' ? 'selected' : '' }}>A</option>
+                        <option value="B" {{ $matakuliah->kelas == 'B' ? 'selected' : '' }}>B</option>
+                        <option value="C" {{ $matakuliah->kelas == 'C' ? 'selected' : '' }}>C</option>
+                        <option value="D" {{ $matakuliah->kelas == 'D' ? 'selected' : '' }}>D</option>
                     </select>
-                    @error('semester')
+                    @error('kelas')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -115,6 +117,24 @@
                         </div>
                     @enderror
                 </div>
+                <div class="form-group">
+                    <label for="tahun_ajaran">Tahun Ajaran</label>
+                    <select name="tahun_ajaran" class="form-control @error('tahun_ajaran') is-invalid @enderror"
+                        id="tahun_ajaran">
+                        <option disabled selected>--Pilih Tahun Ajaran</option>
+                        @foreach ($tahun_ajaran as $item)
+                            <option value="{{ $item->id }}"
+                                {{ old('tahun_ajaran', $matakuliah->tahun_ajaran_id) == $item->id ? 'selected' : '' }}>
+                                {{ $item->nama }}</option>
+                        @endforeach
+                    </select>
+                    @error('tahun_ajaran')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <button class="btn btn-disabled" onclick="history.back()">Back</button>
             </form>
