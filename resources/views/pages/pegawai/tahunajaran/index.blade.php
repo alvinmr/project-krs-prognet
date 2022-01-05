@@ -5,8 +5,13 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('pegawai.tahunajaran-create') }}" class="btn btn-primary">Tambah Tahun Ajaran</a>
+            <a href="{{ route('pegawai.tahunajaran-create') }}" class="btn btn-primary mr-3">Tambah Tahun Ajaran</a>
+            <form action="{{ route('pegawai.tahunajaran-publish')}}" id="publish-tahun-ajaran" method="post">
+                @csrf
+                <button id="btn-publish"class="btn btn-success">Publish Tahun Ajaran</button>
+            </form>
         </div>
+
         <div class="card-body">
             <table id="tableTahunAjaran" class="table">
                 <thead>
@@ -68,5 +73,21 @@
         $(document).ready(function() {
             $('#tableTahunAjaran').DataTable();
         });
+    </script>
+
+    <script>
+        $('#btn-publish').on('click', function() {
+            Swal.fire({
+                title: 'Menyetujui ?',
+                text: 'Apakah anda yakin ingin melakukan publish tahun ajaran ini?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yakin'
+            }).then(res => {
+                if (res.isConfirmed) {
+                    $('#publish-tahun-ajaran').submit()
+                }
+            })
+        })
     </script>
 @endpush
