@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,6 +44,9 @@ class MahasiswaController extends Controller
 
     public function dashboard()
     {
-        return view('pages.dashboard.index');
+        // Ascending karena librarynya ngebaca dari kiri ke kanan
+        $listTahunAjaran = TahunAjaran::orderBy('id', 'asc')->pluck('nama')->toArray();
+        $listIpkPerSemester = auth()->user()->ipk;
+        return view('pages.mahasiswa.dashboard.index', compact('listTahunAjaran'));
     }
 }

@@ -53,28 +53,29 @@ class Mahasiswa extends Authenticatable
 
     public function getIpkAttribute()
     {
-        $indeks_prestasi = 0;
-        foreach ($this->transaksi_krs as $krs) {
-            if ($krs->nilai == 'A') {
-                $indeks_prestasi += $krs->matakuliah->jumlah_sks * 4.0;
-            } else if ($krs->nilai == 'B+') {
-                $indeks_prestasi += $krs->matakuliah->jumlah_sks * 3.5;
-            } else if ($krs->nilai == 'B') {
-                $indeks_prestasi += $krs->matakuliah->jumlah_sks * 3.0;
-            } else if ($krs->nilai == 'C+') {
-                $indeks_prestasi += $krs->matakuliah->jumlah_sks * 2.5;
-            } else if ($krs->nilai == 'C') {
-                $indeks_prestasi += $krs->matakuliah->jumlah_sks * 2.0;
-            } else if ($krs->nilai == 'D+') {
-                $indeks_prestasi += $krs->matakuliah->jumlah_sks * 1.5;
-            } else if ($krs->nilai == 'D') {
-                $indeks_prestasi += $krs->matakuliah->jumlah_sks * 1.0;
-            } else if ($krs->nilai == 'E') {
-                $indeks_prestasi += $krs->matakuliah->jumlah_sks * 0;
-            }
+        $listIps = $this->getListIps();
+
+        return number_format(array_sum($listIps) / $this->semester, 2);
+    }
+
+    public function getListIps()
+    {
+        $tahun_ajaran = TahunAjaran::orderBy('id', 'desc')->limit($this->semester)->get();
+        $listIps = array();
+        foreach ($tahun_ajaran as $item) {
+            array_push($listIps, $this->getIps($item->id));
         }
-        $indeks_prestasi = $indeks_prestasi / $this->getJumlahSks();
-        return number_format($indeks_prestasi, 1);
+        return array_reverse($listIps);
+    }
+
+    public function getListIpk()
+    {
+        $listIps = $this->getListIps();
+        $listIpk = [];
+        for ($i = 1; $i <= $this->semester; $i++) {
+            array_push($listIpk, number_format(array_sum(array_slice($listIps, 0, $i)) / $i, 2));
+        }
+        return $listIpk;
     }
 
     public function getIps($tahun_ajaran_id = null)
@@ -101,7 +102,7 @@ class Mahasiswa extends Authenticatable
             }
         }
         $indeks_prestasi = $indeks_prestasi / $this->getJumlahSks($tahun_ajaran_id);
-        return number_format($indeks_prestasi, 1);
+        return number_format($indeks_prestasi, 2);
     }
 
     public static function getEnumKey($name)

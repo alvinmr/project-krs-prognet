@@ -11,7 +11,7 @@
             <table>
                 <tr>
                     <td class="mr-3">IP Semester</td>
-                    <td>{{ auth('mahasiswa')->user()->getIps(3) }}</td>
+                    <td>{{ auth('mahasiswa')->user()->getIps() }}</td>
                 </tr>
                 <tr>
                     <td>IP Kumulatif</td>

@@ -13,4 +13,9 @@ class TahunAjaran extends Model
     protected $guarded = [];
 
     public $timestamps = false;
+
+    public function transaksi_krs()
+    {
+        return $this->hasMany(TransaksiKrs::class);
+    }
 }
