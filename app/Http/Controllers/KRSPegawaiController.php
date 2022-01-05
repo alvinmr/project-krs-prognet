@@ -48,10 +48,11 @@ class KRSPegawaiController extends Controller
 
     public function showTableKRS()
     {
+        $tahun_ajaran = TahunAjaran::all();
         $mahasiswa = Mahasiswa::whereHas('transaksi_krs', function ($query) {
             $query->where('status', '!=', 'disetujui');
         })->get();
-        return view('pages.pegawai.krs.index', compact('mahasiswa'));
+        return view('pages.pegawai.krs.index', compact('mahasiswa', 'tahun_ajaran'));
     }
 
     public function showDetailMatakuliah($id)
@@ -60,14 +61,22 @@ class KRSPegawaiController extends Controller
         return view('pages.pegawai.krs.detail', compact('listMataKuliahs'));
     }
 
-    public function showCreateTableKRS()
+    public function showCreateTableKRS(Request $request)
     {
-        $listMataKuliahs = Matakuliah::all();
-        return view("pages.pegawai.krs.create", compact('listMataKuliahs'));
+
+        $tahun_ajaran = TahunAjaran::all();
+        if(!$request->tahun_ajaran_id) 
+        { 
+            $listMataKuliahs = Matakuliah::where("tahun_ajaran_id", TahunAjaran::orderBy('id', 'desc')->first()->id)->get();
+        }
+        else 
+        {
+            $listMataKuliahs = Matakuliah::where("tahun_ajaran_id", $request->tahun_ajaran_id)->get();
+        }
+        return view("pages.pegawai.krs.create", compact('listMataKuliahs', 'tahun_ajaran'));
     }
 
 
-    /* Disini mau buat nanti klik si mahasiswanya terus nanti idnya masukin sini; */
     public function storeKRS(Request $id)
     {
         $matakuliah = Matakuliah::find($id);

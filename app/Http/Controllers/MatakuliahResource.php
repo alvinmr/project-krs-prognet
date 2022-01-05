@@ -15,10 +15,19 @@ class MatakuliahResource extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function index(Request $request)
     {
-        $matakuliah = Matakuliah::all();
-        return view('pages.pegawai.matakuliah.index', compact('matakuliah'));
+        $tahun_ajaran = TahunAjaran::all();
+        if(!$request->tahun_ajaran_id) 
+        { 
+            $matakuliah = Matakuliah::where("tahun_ajaran_id", TahunAjaran::orderBy('id', 'desc')->first()->id)->get();
+        }
+        else 
+        {
+            $matakuliah = Matakuliah::where("tahun_ajaran_id", $request->tahun_ajaran_id)->get();
+        }
+        return view('pages.pegawai.matakuliah.index', compact('matakuliah', 'tahun_ajaran'));
     }
 
     /**

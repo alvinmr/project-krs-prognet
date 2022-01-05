@@ -1,11 +1,13 @@
 <div>
-    <div class="d-flex align-items-center ml-4">
-        <label for="paginate" class="text-nowrap mr-2 mb-0">Tahun Ajaran</label>
-        <select class="form-control form-control-sh">
-            <option value="">Tahun Ajaran</option>
-            @foreach ($tahun_ajaran as $item)
-                <option value="$item->id">{{$item->nama}}</option>
-            @endforeach
-        </select>
+    <div class="row md-4 mb-4">
+        <div class="col-md-2">
+            <label for="">Tahun Ajaran</label>
+            <select wire:model="byTahunAjaran" class="form-control">
+                <option value="">Tahun Ajaran</option>
+                @foreach ($tahun_ajaran as $item)
+                    <option value="{{$item->id}}">{{$item->nama}}</option>
+                @endforeach
+            </select>
+        </div>
     </div>
 </div>

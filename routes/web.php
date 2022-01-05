@@ -94,7 +94,8 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
         Route::get('tahunajaran/create', [TahunAjaranResource::class, 'create'])->name('tahunajaran-create');
         Route::post('tahunajaran/store', [TahunAjaranResource::class, 'storeTahunAjaran'])->name('tahunajaran-store');
         Route::get('tahunajaran/edit/{id}', [TahunAjaranResource::class, 'edit'])->name('tahunajaran-edit', 'id');
-        Route::post('tahunajaran/storeupdate/{id}', [TahunAjaranResource::class, 'update'])->name('tahunajaran-update', 'id');
+        Route::put('tahunajaran/storeupdate/{id}', [TahunAjaranResource::class, 'update'])->name('tahunajaran-update', 'id');
+        Route::post('tahunajaran/publish', [TahunAjaranResource::class, 'publish'])->name('tahunajaran-publish');
         Route::post('tahunajaran/storedelete/{id}', [TahunAjaranResource::class, 'destroy'])->name('tahunajaran-delete', 'id');
 
         Route::resource('input-nilai', InputNilaiKRSController::class);

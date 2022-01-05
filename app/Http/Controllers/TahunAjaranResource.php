@@ -48,7 +48,6 @@ class TahunAjaranResource extends Controller
         TahunAjaran::create([
             'nama' => $request->nama
         ]);
-        DB::table('mahasiswa')->update(['semester' => DB::raw('semester+1')]);
 
         return redirect()->route('pegawai.tahunajaran-index')->with('success', 'Data berhasil disimpan');
     }
@@ -92,7 +91,13 @@ class TahunAjaranResource extends Controller
         $tahunajaran->update([
             'nama' => $request->nama
         ]);
-        return redirect()->route('pegawai.tahunajaran.index')->with('success', 'Data berhasil diupdate');
+        return redirect()->route('pegawai.tahunajaran-index')->with('success', 'Data berhasil diupdate');
+    }
+
+    public function publish(Request $request, TahunAjaran $tahunajaran)
+    {
+        DB::table('mahasiswa')->update(['semester' => DB::raw('semester+1')]);
+        return redirect()->route('pegawai.tahunajaran-index')->with('success', 'Data berhasil dipublish');
     }
 
     /**

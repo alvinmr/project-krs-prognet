@@ -8,6 +8,18 @@
             <a href="{{ route('pegawai.matakuliah.create') }}" class="btn btn-primary">Tambah Matakuliah</a>
         </div>
         <div class="card-body">
+            <form action="" method="GET">
+                <div class="row md-4 mb-4">
+                    <div class="col-md-2">
+                        <label for="tahun_ajaran_id">Tahun Ajaran</label>
+                        <select name="tahun_ajaran_id" onchange="this.form.submit()" class="form-control" id="tahun_ajaran_id" aria-label="Tahun Ajaran">
+                            @foreach ($tahun_ajaran as $item)
+                                <option value="{{$item->id}}" {{ request()->get('tahun_ajaran_id') == $item->id ? "checked" : "" }}>{{$item->nama}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </form>
             <table id="tableDosen" class="table">
                 <thead>
                     <tr>

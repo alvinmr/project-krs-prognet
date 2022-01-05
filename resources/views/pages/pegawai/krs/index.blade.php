@@ -5,6 +5,18 @@
 @section('content')
     <div class="card">
         <div class="card-body">
+            <form action="" method="GET">
+                <div class="row md-2 mb-3">
+                    <div class="col-md-2">
+                        <label for="tahun_ajaran_id">Tahun Ajaran</label>
+                        <select name="tahun_ajaran_id" onchange="this.form.submit()" class="form-control" id="tahun_ajaran_id" aria-label="Tahun Ajaran">
+                            @foreach ($tahun_ajaran as $item)
+                                <option value="{{$item->id}}" {{ request()->get('tahun_ajaran_id') == $item->id ? "checked" : "" }}>{{$item->nama}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </form>
             <table id="tableKRSMahasiswa" class="table">
                 <thead>
                     <tr>

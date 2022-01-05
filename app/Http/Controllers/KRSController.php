@@ -5,16 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\TransaksiKrs;
 use App\Models\Matakuliah;
 use App\Models\TahunAjaran;
+use Illuminate\Http\Request;
 
 class KRSController extends Controller
 {
-    public function showTableKRS()
+    public function showTableKRS(Request $request)
     {
         $mahasiswas = auth('mahasiswa')->user()->id;
-        $listKRS = TransaksiKrs::whereMahasiswaId($mahasiswas)->whereTahunAjaranId(TahunAjaran::orderBy('id', 'desc')->first()->id)->get();
-        /* $listKRSs = TransaksiKrs::all(); */
+        if(!$request->tahun_ajaran_id) 
+        { 
+            $listKRS = TransaksiKrs::whereMahasiswaId($mahasiswas)->whereTahunAjaranId(TahunAjaran::orderBy('id', 'desc')->first()->id)->get();
+        }
+        else 
+        {
+            $listKRS= TransaksiKrs::whereTahunAjaranId("tahun_ajaran_id", $request->tahun_ajaran_id)->get();
+        }
         return view('pages.mahasiswa.krs.index', compact('listKRS'));
-        /* return view('pages.mahasiswa.krs.index', compact('listKRSs')); */
     }
 
     public function showDetailMatakuliah($id)
