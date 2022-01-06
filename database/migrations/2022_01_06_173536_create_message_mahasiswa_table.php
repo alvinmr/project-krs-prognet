@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMessageTable extends Migration
+class CreateMessageMahasiswaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,9 +15,10 @@ class CreateMessageTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->longText('pesan');
-            $table->foreignId('pegawai_id')->constrained('pegawai');
-            $table->foreignId('mahasiswa_id')->constrained('mahasiswa');
+            $table->longText('message')->nullable();
+            $table->foreignId('from_id');
+            $table->foreignId('to_id');
+            $table->timestamps();
         });
     }
 
