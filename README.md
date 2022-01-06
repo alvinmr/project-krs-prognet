@@ -6,5 +6,19 @@ Disini kita membuat sebuah aplikasi penginputan KRS nih guys
 
 Fitur yang belum :
 
--   Nilai KHS
--   View Berdasarkan Tahun Ajaran
+- Nilai KHS
+- View Berdasarkan Tahun Ajaranddaw
+
+Cara Jalanin
+
+``
+composer install
+
+npm i
+
+cp .env.example .env
+
+php artisan key:generate
+
+php artisan migrate --seed
+``
