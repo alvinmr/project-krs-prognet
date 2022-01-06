@@ -11,7 +11,7 @@ Fitur yang belum :
 
 Cara Jalanin
 
-``
+```code
 composer install
 
 npm i
