@@ -70,6 +70,7 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
     Route::middleware('auth:pegawai')->group(function () {
         Route::post('logout', [PegawaiController::class, 'logout']);
         Route::get('dashboard', [PegawaiController::class, 'dashboard'])->name('dashboard');
+
         Route::resource('mahasiswa', MahasiswaResource::class);
         Route::resource('matakuliah', MatakuliahResource::class);
         Route::resource('dosen', DosenResource::class);
@@ -97,6 +98,7 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
         Route::put('tahunajaran/storeupdate/{id}', [TahunAjaranResource::class, 'update'])->name('tahunajaran-update', 'id');
         Route::post('tahunajaran/publish', [TahunAjaranResource::class, 'publish'])->name('tahunajaran-publish');
         Route::post('tahunajaran/storedelete/{id}', [TahunAjaranResource::class, 'destroy'])->name('tahunajaran-delete', 'id');
+
 
         Route::resource('input-nilai', InputNilaiKRSController::class);
     });
