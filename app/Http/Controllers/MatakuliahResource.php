@@ -19,12 +19,9 @@ class MatakuliahResource extends Controller
     public function index(Request $request)
     {
         $tahun_ajaran = TahunAjaran::all();
-        if(!$request->tahun_ajaran_id) 
-        { 
-            $matakuliah = Matakuliah::where("tahun_ajaran_id", TahunAjaran::orderBy('id', 'desc')->first()->id)->get();
-        }
-        else 
-        {
+        if (!$request->tahun_ajaran_id) {
+            $matakuliah = Matakuliah::where("tahun_ajaran_id", TahunAjaran::orderBy('id', 'asc')->first()->id)->get();
+        } else {
             $matakuliah = Matakuliah::where("tahun_ajaran_id", $request->tahun_ajaran_id)->get();
         }
         return view('pages.pegawai.matakuliah.index', compact('matakuliah', 'tahun_ajaran'));

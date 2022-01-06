@@ -12,9 +12,12 @@
                 <div class="row md-4 mb-4">
                     <div class="col-md-2">
                         <label for="tahun_ajaran_id">Tahun Ajaran</label>
-                        <select name="tahun_ajaran_id" onchange="this.form.submit()" class="form-control" id="tahun_ajaran_id" aria-label="Tahun Ajaran">
+                        <select name="tahun_ajaran_id" onchange="this.form.submit()" class="form-control"
+                            id="tahun_ajaran_id" aria-label="Tahun Ajaran">
                             @foreach ($tahun_ajaran as $item)
-                                <option value="{{$item->id}}" {{ request()->get('tahun_ajaran_id') == $item->id ? "checked" : "" }}>{{$item->nama}}</option>
+                                <option value="{{ $item->id }}"
+                                    {{ request()->get('tahun_ajaran_id') == $item->id ? 'selected' : '' }}>
+                                    {{ $item->nama }}</option>
                             @endforeach
                         </select>
                     </div>

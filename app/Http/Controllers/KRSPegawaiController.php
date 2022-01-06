@@ -46,12 +46,18 @@ class KRSPegawaiController extends Controller
         return redirect()->route('pegawai.krs-index')->with('success', 'KRS berhasil ditolak');
     }
 
-    public function showTableKRS()
+    public function showTableKRS(Request $request)
     {
         $tahun_ajaran = TahunAjaran::all();
-        $mahasiswa = Mahasiswa::whereHas('transaksi_krs', function ($query) {
-            $query->where('status', '!=', 'disetujui');
-        })->get();
+        if (!$request->tahun_ajaran_id) {
+            $mahasiswa = Mahasiswa::whereHas('transaksi_krs', function ($query) {
+                $query->where('status', '!=', 'disetujui')->where("tahun_ajaran_id", TahunAjaran::orderBy('id', 'desc')->first()->id);
+            })->get();
+        } else {
+            $mahasiswa = Mahasiswa::whereHas('transaksi_krs', function ($query) use ($request) {
+                $query->where('status', '!=', 'disetujui')->where("tahun_ajaran_id", $request->tahun_ajaran_id);
+            })->get();
+        }
         return view('pages.pegawai.krs.index', compact('mahasiswa', 'tahun_ajaran'));
     }
 
@@ -65,12 +71,9 @@ class KRSPegawaiController extends Controller
     {
 
         $tahun_ajaran = TahunAjaran::all();
-        if(!$request->tahun_ajaran_id) 
-        { 
+        if (!$request->tahun_ajaran_id) {
             $listMataKuliahs = Matakuliah::where("tahun_ajaran_id", TahunAjaran::orderBy('id', 'desc')->first()->id)->get();
-        }
-        else 
-        {
+        } else {
             $listMataKuliahs = Matakuliah::where("tahun_ajaran_id", $request->tahun_ajaran_id)->get();
         }
         return view("pages.pegawai.krs.create", compact('listMataKuliahs', 'tahun_ajaran'));

@@ -12,13 +12,10 @@ class KRSController extends Controller
     public function showTableKRS(Request $request)
     {
         $mahasiswas = auth('mahasiswa')->user()->id;
-        if(!$request->tahun_ajaran_id) 
-        { 
+        if (!$request->tahun_ajaran_id) {
             $listKRS = TransaksiKrs::whereMahasiswaId($mahasiswas)->whereTahunAjaranId(TahunAjaran::orderBy('id', 'desc')->first()->id)->get();
-        }
-        else 
-        {
-            $listKRS= TransaksiKrs::whereTahunAjaranId("tahun_ajaran_id", $request->tahun_ajaran_id)->get();
+        } else {
+            $listKRS = TransaksiKrs::whereTahunAjaranId("tahun_ajaran_id", $request->tahun_ajaran_id)->get();
         }
         return view('pages.mahasiswa.krs.index', compact('listKRS'));
     }

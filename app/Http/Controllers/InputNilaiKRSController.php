@@ -15,10 +15,15 @@ class InputNilaiKRSController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $matakuliah = Matakuliah::whereTahunAjaranId(TahunAjaran::orderBy('id', 'desc')->first()->id)->get();
-        return view('pages.pegawai.input-nilai.index', compact('matakuliah'));
+        if (!$request->tahun_ajaran_id) {
+            $matakuliah = Matakuliah::whereTahunAjaranId(TahunAjaran::orderBy('id', 'desc')->first()->id)->get();
+        } else {
+            $matakuliah = Matakuliah::whereTahunAjaranId($request->tahun_ajaran_id)->get();
+        }
+        $tahun_ajaran = TahunAjaran::all();
+        return view('pages.pegawai.input-nilai.index', compact('matakuliah', 'tahun_ajaran'));
     }
 
     /**
@@ -48,10 +53,14 @@ class InputNilaiKRSController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $matakuliah = Matakuliah::find($id);
-        $mahasiswaInMatakuliah = TransaksiKrs::whereMatakuliahId($id)->whereStatus('disetujui')->get();
+        if (!$request) {
+            $mahasiswaInMatakuliah = TransaksiKrs::whereMatakuliahId($id)->whereStatus('disetujui')->get();
+        } else {
+            $mahasiswaInMatakuliah = TransaksiKrs::whereMatakuliahId($id)->whereStatus('disetujui')->get();
+        }
         return view('pages.pegawai.input-nilai.show', compact('matakuliah', 'mahasiswaInMatakuliah'));
     }
 
