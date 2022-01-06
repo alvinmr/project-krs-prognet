@@ -28,7 +28,8 @@ class MahasiswaSeeder extends Seeder
                 'angkatan' => $angkatan[$i],
                 'prodi_id' => 5,
                 'foto_mahasiswa' => 'default-avatar.png',
-                'password' => Hash::make('pass')
+                'password' => Hash::make('pass'),
+                'status_mahasiswa' => 1
             ]);
         }
     }
