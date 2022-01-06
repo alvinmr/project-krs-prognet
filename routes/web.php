@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DosenResource;
 use App\Http\Controllers\InputNilaiKRSController;
 use App\Http\Controllers\KHSMahasiswaController;
@@ -57,6 +58,7 @@ Route::prefix('mahasiswa/')->name('mahasiswa.')->group(function () {
     Route::post('krs/storedelete/{id}', [KRSController::class, 'storeDeleteTableKRS'])->name('krs-store-delete', 'id')->middleware('auth:mahasiswa');
 
     Route::resource('khs', KHSMahasiswaController::class);
+    Route::get('chat/{id}', [ChatController::class, 'index'])->name('chat.index');
 });
 
 Route::prefix('pegawai/')->name('pegawai.')->group(function () {
@@ -99,5 +101,6 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
         Route::post('tahunajaran/storedelete/{id}', [TahunAjaranResource::class, 'destroy'])->name('tahunajaran-delete', 'id');
 
         Route::resource('input-nilai', InputNilaiKRSController::class);
+        Route::get('chat/{id}', [ChatController::class, 'index'])->name('chat.index');
     });
 });

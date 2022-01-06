@@ -6,9 +6,9 @@
     <div class="card">
         <div class="card-header">
             <a href="{{ route('pegawai.tahunajaran-create') }}" class="btn btn-primary mr-3">Tambah Tahun Ajaran</a>
-            <form action="{{ route('pegawai.tahunajaran-publish')}}" id="publish-tahun-ajaran" method="post">
+            <form action="{{ route('pegawai.tahunajaran-publish') }}" id="publish-tahun-ajaran" method="post">
                 @csrf
-                <button id="btn-publish"class="btn btn-success">Publish Tahun Ajaran</button>
+                <a id="btn-publish" class="btn btn-success">Publish Tahun Ajaran</a>
             </form>
         </div>
 

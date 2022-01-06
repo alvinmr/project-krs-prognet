@@ -8,16 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Message extends Model
 {
     use HasFactory;
-    protected $fillable = ['pesan', 'pegawai_id', 'mahasiswa_id'];
+    protected $guarded = [];
 
-    public function pegawai()
+
+    public function message_pegawai()
     {
-        return $this->belongsTo(Pegawai::class);
+        return $this->belongsTo(MessagePegawai::class);
     }
 
-    public function mahasiswa()
+    public function message_mahasiswa()
     {
-        return $this->belongsTo(Mahasiswa::class);
+        return $this->belongsTo(MessageMahasiswa::class);
     }
 }
-

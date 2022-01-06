@@ -101,7 +101,7 @@ class Mahasiswa extends Authenticatable
                 $indeks_prestasi += $krs->matakuliah->jumlah_sks * 0;
             }
         }
-        $indeks_prestasi = $indeks_prestasi / $this->getJumlahSks($tahun_ajaran_id);
+        $indeks_prestasi = $this->getJumlahSks($tahun_ajaran_id) == 0 ? 0 : $indeks_prestasi / $this->getJumlahSks($tahun_ajaran_id);
         return number_format($indeks_prestasi, 2);
     }
 

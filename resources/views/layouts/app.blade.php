@@ -61,14 +61,13 @@
     <!-- General JS Scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
     </script>
+    <script src="{{ asset('js/app.js') }}"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="../assets/js/stisla.js"></script>
 
     <!-- JS Libraies -->
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -116,7 +115,42 @@
                 timeout: 2000
             });
         })
+        window.addEventListener('message-update', () => {
+            var div = document.getElementById("chatbox");
+            $('#chatbox').animate({
+                scrollTop: div.scrollHeight - div.clientHeight
+            });
+        })
+
+        document.addEventListener('livewire:load', function() {
+            @auth('mahasiswa')
+                Echo.channel('user-message.' + "{{ auth('mahasiswa')->user()->id }}")
+                .listen('MessageEvent', (e) => {
+                iziToast.info({
+                title: 'Info',
+                message: 'Ada pesan masuk!',
+                position: 'topRight',
+                timeout: 2000
+                });
+            
+                })
+            @endauth
+            @auth('pegawai')
+                Echo.channel('user-message.' + "{{ auth('pegawai')->user()->id }}")
+                .listen('MessageEvent', (e) => {
+                iziToast.info({
+                title: 'Info',
+                message: 'Ada pesan masuk!',
+                position: 'topRight',
+                timeout: 2000
+                });
+            
+                })
+            
+            @endauth
+        })
     </script>
+
 </body>
 
 </html>
