@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mahasiswa;
 use App\Models\Matakuliah;
+use App\Models\Dosen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,6 +46,8 @@ class PegawaiController extends Controller
 
     public function dashboard()
     {
-        return view('pages.dashboard.index');
+        $mahasiswa = Mahasiswa::where('status_mahasiswa', 1)->get()->count();
+        $dosen = Dosen::where('status_dosen', 1)->get()->count();
+        return view('pages.pegawai.dashboard.index', compact('mahasiswa', 'dosen'));
     }
 }
