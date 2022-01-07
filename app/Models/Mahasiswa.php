@@ -51,6 +51,13 @@ class Mahasiswa extends Authenticatable
         }
     }
 
+    public function getAvatarAttribute()
+    {
+        return $this->foto_mahasiswa ?
+            asset('foto_mahasiswa/' . $this->foto_mahasiswa) :
+            'https://source.boringavatars.com/beam/200/' . $this->nama;
+    }
+
     public function getIpkAttribute()
     {
         $listIps = $this->getListIps();

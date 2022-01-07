@@ -33,8 +33,7 @@
                             <td>{{ $item->angkatan }}</td>
                             <td>{{ $item->prodi->nama_prodi }}</td>
                             <td>
-                                <img class="img-fluid" src="{{ asset('foto_mahasiswa/' . $item->foto_mahasiswa) }}"
-                                    alt="{{ $item->foto_mahasiswa }}">
+                                <img class="img-fluid" src="{{ $item->avatar }}" alt="{{ $item->foto_mahasiswa }}">
                             </td>
                             <td>
                                 <div class="dropdown">

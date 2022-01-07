@@ -77,8 +77,7 @@
 
                 <div class="my-3">
                     <h4>Foto Sebelumnya</h4>
-                    <img class="img-fluid" src="{{ asset('foto_mahasiswa/' . $mahasiswa->foto_mahasiswa) }}"
-                        alt="{{ $mahasiswa->foto_mahasiswa }}">
+                    <img class="img-fluid" src="{{ $mahasiswa->avatar }}" alt="{{ $mahasiswa->foto_mahasiswa }}">
                 </div>
 
                 <div class="form-group">

@@ -54,8 +54,7 @@
         <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                 @auth('mahasiswa')
-                    <img alt="image" src="https://source.boringavatars.com/beam/120/{{ auth('mahasiswa')->user()->nama }}"
-                        class="mr-1 rounded-circle">
+                    <img alt="image" src="{{ auth('mahasiswa')->user()->avatar }}" class="mr-1 rounded-circle">
                     <div class="d-sm-none d-lg-inline-block">Hi, {{ auth('mahasiswa')->user()->nama }}
                         ({{ auth('mahasiswa')->user()->nim }})</div>
                 @endauth
