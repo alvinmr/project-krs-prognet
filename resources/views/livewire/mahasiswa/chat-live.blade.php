@@ -11,7 +11,7 @@
                     @foreach ($messages as $item)
                         <div class="chat-item {{ $item->from_id == auth('mahasiswa')->user()->id ? 'chat-right' : 'chat-left' }}"
                             style=""><img
-                                src="https://source.boringavatars.com/beam/120/{{ auth('mahasiswa')->user()->nama }}">
+                                src="{{ $item->from_id == auth('mahasiswa')->user()->id ? auth('mahasiswa')->user()->avatar : 'https://source.boringavatars.com/beam/120/' . $pegawai->nama }}">
                             <div class="chat-details">
                                 <div class="chat-text">{{ $item->message }}</div>
                                 <div class="chat-time">{{ $item->created_at }}</div>
