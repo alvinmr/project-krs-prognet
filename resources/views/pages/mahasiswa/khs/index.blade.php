@@ -4,9 +4,6 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">
-            <h4>Info Indeks Prestasi</h4>
-        </div>
         <div class="card-body">
             <form action="" method="GET">
                 <div class="row md-2 mb-3">

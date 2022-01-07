@@ -59,4 +59,11 @@ class KRSController extends Controller
         $krs = TransaksiKrs::where('id', $id)->delete();
         return redirect()->route('mahasiswa.krs-index')->with('success', 'KRS Berhasil Dihapus');
     }
+
+    public function listMahasiswa($id)
+    {
+        $list_mahasiswa = TransaksiKrs::whereMatakuliahId($id)->whereStatus('disetujui')->get();
+        $matakuliah = Matakuliah::find($id);
+        return view('pages.mahasiswa.krs.list-mahasiswa', compact('list_mahasiswa', 'matakuliah'));
+    }
 }

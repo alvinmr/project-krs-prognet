@@ -67,7 +67,8 @@
                                 </td>
                             @else
                                 <td>
-                                    <a href="#" class="btn btn-primary">List Mahasiswa</a>
+                                    <a href="{{ route('mahasiswa.krs-list-mahasiswa', $item->matakuliah->id) }}"
+                                        class="btn btn-primary">List Mahasiswa</a>
                                 </td>
                             @endif
                         </tr>
