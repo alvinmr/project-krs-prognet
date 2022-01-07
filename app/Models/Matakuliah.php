@@ -6,11 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\DB;
-use Mehradsadeghi\FilterQueryString\FilterQueryString;
 
 class Matakuliah extends Model
 {
-    use FilterQueryString;
     use HasFactory;
 
     protected $filters = ['tahun_ajaran_id'];
@@ -42,7 +40,8 @@ class Matakuliah extends Model
         return $this->hasMany(TransaksiKrs::class);
     }
 
-    public function tahun_ajaran_id($query, $value) {
+    public function tahun_ajaran_id($query, $value)
+    {
         $query->where('tahun_ajaran_id', $value);
     }
 
@@ -58,5 +57,4 @@ class Matakuliah extends Model
         }
         return $enum;
     }
-
 }
