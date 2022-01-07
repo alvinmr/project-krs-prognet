@@ -56,11 +56,7 @@ class InputNilaiKRSController extends Controller
     public function show(Request $request, $id)
     {
         $matakuliah = Matakuliah::find($id);
-        if (!$request) {
-            $mahasiswaInMatakuliah = TransaksiKrs::whereMatakuliahId($id)->whereStatus('disetujui')->get();
-        } else {
-            $mahasiswaInMatakuliah = TransaksiKrs::whereMatakuliahId($id)->whereStatus('disetujui')->get();
-        }
+        $mahasiswaInMatakuliah = TransaksiKrs::whereMatakuliahId($id)->whereStatus('disetujui')->get();
         return view('pages.pegawai.input-nilai.show', compact('matakuliah', 'mahasiswaInMatakuliah'));
     }
 
