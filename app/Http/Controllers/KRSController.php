@@ -12,12 +12,13 @@ class KRSController extends Controller
     public function showTableKRS(Request $request)
     {
         $mahasiswas = auth('mahasiswa')->user()->id;
+        $tahun_ajaran = TahunAjaran::limit(auth('mahasiswa')->user()->semester)->get();
         if (!$request->tahun_ajaran_id) {
             $listKRS = TransaksiKrs::whereMahasiswaId($mahasiswas)->whereTahunAjaranId(TahunAjaran::orderBy('id', 'desc')->first()->id)->get();
         } else {
-            $listKRS = TransaksiKrs::whereTahunAjaranId("tahun_ajaran_id", $request->tahun_ajaran_id)->get();
+            $listKRS = TransaksiKrs::whereMahasiswaId($mahasiswas)->whereTahunAjaranId($request->tahun_ajaran_id)->get();
         }
-        return view('pages.mahasiswa.krs.index', compact('listKRS'));
+        return view('pages.mahasiswa.krs.index', compact('listKRS', 'tahun_ajaran'));
     }
 
     public function showDetailMatakuliah($id)
@@ -41,7 +42,6 @@ class KRSController extends Controller
 
         if (!auth('mahasiswa')->user()->transaksi_krs->contains('matakuliah_id', $matakuliah->id)) {
             $krs->matakuliah_id = $matakuliah->id;
-            $krs->tahun_ajaran = explode(" ", TahunAjaran::orderBy('id', 'desc')->first()->name)[1];
             $krs->semester = $matakuliah->semester;
             $krs->nilai = 'Tunda';
             $krs->status = 'pending';
