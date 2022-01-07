@@ -59,6 +59,7 @@ Route::prefix('mahasiswa/')->name('mahasiswa.')->group(function () {
 
     Route::resource('khs', KHSMahasiswaController::class);
     Route::get('chat/{id}', [ChatController::class, 'index'])->name('chat.index');
+    Route::get('matakuliah/list-mahasiswa/{id}', [KRSController::class, 'listMahasiswa'])->name('krs-list-mahasiswa');
 });
 
 Route::prefix('pegawai/')->name('pegawai.')->group(function () {
