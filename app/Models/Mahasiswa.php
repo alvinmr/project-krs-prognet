@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class Mahasiswa extends Authenticatable
 {
     use HasFactory;
     protected $table = 'mahasiswa';
+    protected $keyType = 'string';
     protected $fillable = [
         'nim', 'nama', 'alamat', 'telepon', 'angkatan', 'foto_mahasiswa',
         'password', 'prodi_id'
@@ -123,5 +125,14 @@ class Mahasiswa extends Authenticatable
             $enum[] = $v;
         }
         return $enum;
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->id = Str::uuid();
+        });
     }
 }

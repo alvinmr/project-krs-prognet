@@ -20,7 +20,7 @@ class CreateTransaksiKrsTable extends Migration
             $table->enum('nilai', ['Tunda', 'A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'E'])->default('Tunda');
             $table->enum('status', ['disetujui', 'ditolak', 'pending']);
             $table->foreignId('matakuliah_id')->constrained('matakuliah');
-            $table->foreignId('mahasiswa_id')->constrained('mahasiswa');
+            $table->foreignUuid('mahasiswa_id')->constrained('mahasiswa');
         });
     }
 

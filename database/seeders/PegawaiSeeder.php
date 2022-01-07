@@ -19,7 +19,7 @@ class PegawaiSeeder extends Seeder
         $nip = ['200212242020072001', '200212242020072002', '200212242020072003', '200212242020072004'];
 
         for ($i = 0; $i < 3; $i++) {
-            Pegawai::insert([
+            Pegawai::create([
                 'nip' => $nip[$i],
                 'nama' => $nama[$i],
                 'alamat' => 'Jl Kita berdua',

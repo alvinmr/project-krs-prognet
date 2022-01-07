@@ -24,7 +24,7 @@ class CreateKhsTable extends Migration
             $table->string('jumlah_sks');
             $table->string('nilai_huruf');
             $table->unsignedFloat('nilai_bobot');
-            $table->foreignId('mahasiswa_id')->constrained('mahasiswa');
+            $table->foreignUuid('mahasiswa_id')->constrained('mahasiswa');
         });
     }
 
