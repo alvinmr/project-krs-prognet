@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
 
 class KHSMahasiswaController extends Controller
@@ -12,9 +13,15 @@ class KHSMahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('pages.mahasiswa.khs.index');
+        if (!$request->tahun_ajaran_id) {
+            $khs = auth('mahasiswa')->user()->transaksi_krs->where('tahun_ajaran_id', auth('mahasiswa')->user()->getLastTahunAjaran());
+        } else {
+            $khs = auth('mahasiswa')->user()->transaksi_krs->where('tahun_ajaran_id', $request->tahun_ajaran_id);
+        }
+        $tahun_ajaran = TahunAjaran::limit(auth('mahasiswa')->user()->semester)->get();
+        return view('pages.mahasiswa.khs.index', compact('khs', 'tahun_ajaran'));
     }
 
     /**
