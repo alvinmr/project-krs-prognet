@@ -58,6 +58,7 @@
             Echo.channel('user-message.' + @this.chat_id)
                 .listen('MessageEvent', (e) => {
                     @this.pushItem(e.id)
+
                 })
         })
     </script>
