@@ -22,7 +22,8 @@ class DosenSeeder extends Seeder
                 'nip' => $nip[$i],
                 'nama' => $nama[$i],
                 'email' => strtolower($nama[$i]) . '@gmail.com',
-                'telepon' => '082348758492'
+                'telepon' => '082348758492',
+                'status_dosen' => 1
             ]);
         }
     }
