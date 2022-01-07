@@ -65,15 +65,29 @@
                 @endauth
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <form action="{{ route('mahasiswa.logout') }}" method="post">
-                    @csrf
-                    <button type="submit" class="dropdown-item ">
-                        <div class="has-icon text-danger">
-                            <i class="fas fa-sign-out-alt"></i>
-                            Logout
-                        </div>
-                    </button>
-                </form>
+                @auth('mahasiswa')
+                    <form action="{{ route('mahasiswa.logout') }}" method="post">
+                        @csrf
+                        <button type="submit" class="dropdown-item ">
+                            <div class="has-icon text-danger">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </div>
+                        </button>
+                    </form>
+                @endauth
+                @auth('pegawai')
+                    <form action="{{ route('pegawai.logout') }}" method="post">
+                        @csrf
+                        <button type="submit" class="dropdown-item ">
+                            <div class="has-icon text-danger">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </div>
+                        </button>
+                    </form>
+
+                @endauth
             </div>
         </li>
     </ul>

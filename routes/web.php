@@ -71,7 +71,7 @@ Route::prefix('pegawai/')->name('pegawai.')->group(function () {
         return redirect()->route('pegawai.login');
     });
     Route::middleware('auth:pegawai')->group(function () {
-        Route::post('logout', [PegawaiController::class, 'logout']);
+        Route::post('logout', [PegawaiController::class, 'logout'])->name('logout');
         Route::get('dashboard', [PegawaiController::class, 'dashboard'])->name('dashboard');
 
         Route::resource('mahasiswa', MahasiswaResource::class);
