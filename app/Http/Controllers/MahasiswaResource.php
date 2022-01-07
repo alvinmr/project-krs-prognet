@@ -50,12 +50,14 @@ class MahasiswaResource extends Controller
             'telepon' => 'required|numeric',
             'angkatan' => 'required',
             'prodi' => 'required',
-            'foto_mahasiswa' => 'required|max:2048'
+            'foto_mahasiswa' => 'max:2048'
         ]);
+        if ($request->file('foto_mahasiswa')) {
+            $foto = $request->file('foto_mahasiswa');
+            $nameFile = date('ymdhis') . '_' . $request->nama . '.' . $foto->getClientOriginalExtension();
+            $foto->storeAs('foto_mahasiswa', $nameFile);
+        }
         $nim = substr($request->angkatan, 2) . '0' . $kodeProdi[$request->prodi - 1] . str_pad(Mahasiswa::where('prodi_id', $request->prodi)->count() + 1, 2, '0', STR_PAD_LEFT);
-        $foto = $request->file('foto_mahasiswa');
-        $nameFile = date('ymdhis') . '_' . $request->nama . '.' . $foto->getClientOriginalExtension();
-        $foto->storeAs('foto_mahasiswa', $nameFile);
         Mahasiswa::create([
             'nim' => $nim,
             'nama' => $request->nama,
@@ -63,7 +65,7 @@ class MahasiswaResource extends Controller
             'telepon' => $request->telepon,
             'angkatan' => $request->angkatan,
             'prodi_id' => $request->prodi,
-            'foto_mahasiswa' => $nameFile,
+            'foto_mahasiswa' => $nameFile ?? null,
             'password' => Hash::make($nim)
         ]);
 
