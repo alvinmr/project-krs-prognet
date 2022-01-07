@@ -9,7 +9,11 @@ use Livewire\Component;
 
 class ChatLive extends Component
 {
-    public $messages, $chat, $chat_id, $mahasiswa;
+    public $messagesData, $chat, $chat_id, $mahasiswa;
+
+    protected $rules = [
+        'chat' => 'required'
+    ];
 
     public function mount()
     {
@@ -19,14 +23,14 @@ class ChatLive extends Component
 
     public function fetchMessage()
     {
-        $this->messages = Message::where('from_id', $this->chat_id)->where('to_id', auth('pegawai')->user()->id)->orWhere('to_id', $this->chat_id)->where('from_id', auth('pegawai')->user()->id)->get();
+        $this->messagesData = Message::where('from_id', $this->chat_id)->where('to_id', auth('pegawai')->user()->id)->orWhere('to_id', $this->chat_id)->where('from_id', auth('pegawai')->user()->id)->get();
         $this->dispatchBrowserEvent('message-update');
     }
 
     public function pushItem($item)
     {
         $message = Message::find($item);
-        $this->messages->push($message);
+        $this->messagesData->push($message);
         $this->dispatchBrowserEvent('message-update');
     }
 
@@ -37,6 +41,7 @@ class ChatLive extends Component
 
     public function sendMessage()
     {
+        $this->validate();
         $mess = Message::create([
             'message' => $this->chat,
             'from_id' => auth('pegawai')->user()->id,

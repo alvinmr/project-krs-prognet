@@ -8,7 +8,7 @@
                     </h4>
                 </div>
                 <div class="card-body chat-content" id="chatbox">
-                    @foreach ($messages as $item)
+                    @foreach ($messagesData as $item)
                         <div class="chat-item {{ $item->from_id == auth('mahasiswa')->user()->id ? 'chat-right' : 'chat-left' }}"
                             style=""><img
                                 src="{{ $item->from_id == auth('mahasiswa')->user()->id ? auth('mahasiswa')->user()->avatar : 'https://source.boringavatars.com/beam/120/' . $pegawai->nama }}">
@@ -21,12 +21,17 @@
                 </div>
                 <div class="card-footer chat-form">
                     <form id="chat-form2" wire:submit.prevent="sendMessage">
-                        <input type="text" wire:model.lazy="chat" class="form-control" placeholder="Type a message">
+                        <input type="text" wire:model.lazy="chat"
+                            class="form-control @error('chat') is-invalid @enderror" placeholder="Type a message">
+                        @error('chat')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                         <button class="btn btn-primary">
                             <i class="far fa-paper-plane"></i>
                         </button>
                     </form>
-                    @error('chat') <span class="error">{{ $message }}</span> @enderror
                 </div>
             </div>
         </div>
