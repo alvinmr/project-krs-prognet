@@ -6,6 +6,7 @@ use App\Models\TransaksiKrs;
 use App\Models\Matakuliah;
 use App\Models\TahunAjaran;
 use Illuminate\Http\Request;
+use PDF;
 
 class KRSController extends Controller
 {
@@ -65,5 +66,23 @@ class KRSController extends Controller
         $list_mahasiswa = TransaksiKrs::whereMatakuliahId($id)->whereStatus('disetujui')->get();
         $matakuliah = Matakuliah::find($id);
         return view('pages.mahasiswa.krs.list-mahasiswa', compact('list_mahasiswa', 'matakuliah'));
+    }
+
+    public function printKRS(Request $request)
+    {
+        $mahasiswas = auth('mahasiswa')->user()->id;
+
+        $tahun_ajaran = TahunAjaran::limit(auth('mahasiswa')->user()->semester)->get();
+        if (!$request->tahun_ajaran_id) {
+            $listKRS = TransaksiKrs::whereMahasiswaId($mahasiswas)->whereTahunAjaranId(TahunAjaran::orderBy('id', 'desc')->first()->id)->get();
+        } else {
+            $listKRS = TransaksiKrs::whereMahasiswaId($mahasiswas)->whereTahunAjaranId($request->tahun_ajaran_id)->get();
+        }
+
+
+        $file_PDF = PDF::loadview('pages.mahasiswa.krs.pdf', compact('listKRS'));
+
+        return $file_PDF->download('KRS.pdf');  
+        /* return "test"; */  
     }
 }
