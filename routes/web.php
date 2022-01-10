@@ -61,6 +61,9 @@ Route::prefix('mahasiswa/')->name('mahasiswa.')->group(function () {
         Route::get('krs/delete', [KRSController::class, 'showDeleteTableKRS'])->name('krs-delete');
         Route::post('krs/storedelete/{id}', [KRSController::class, 'storeDeleteTableKRS'])->name('krs-store-delete', 'id');
 
+        /* krs-print*/
+        Route::get('krs/print', [KRSController::class, 'printKRS'])->name('krs-print');
+
         Route::resource('khs', KHSMahasiswaController::class);
         Route::get('chat/{id}', [ChatController::class, 'index'])->name('chat.index');
         Route::get('matakuliah/list-mahasiswa/{id}', [KRSController::class, 'listMahasiswa'])->name('krs-list-mahasiswa');
