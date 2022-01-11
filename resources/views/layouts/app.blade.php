@@ -133,6 +133,9 @@
                 timeout: 2000
                 });
             
+                var audio = new Audio("{{ asset('assets/sounds/notif.mp3') }}");
+                audio.play();
+            
                 })
             @endauth
             @auth('pegawai')
@@ -144,6 +147,9 @@
                 position: 'topRight',
                 timeout: 2000
                 });
+            
+                var audio2 = new Audio("{{ asset('assets/sounds/notif.mp3') }}");
+                audio2.play();
             
                 })
             

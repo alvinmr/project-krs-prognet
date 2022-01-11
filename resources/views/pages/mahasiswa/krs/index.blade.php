@@ -10,6 +10,7 @@
         </div>
 
         <div class="card-body">
+            <p class="font-weight-bold">Jumlah SKS yang dapat diambil : {{ $jumlahSks }}</p>
             <form action="" method="GET">
                 <div class="row md-2 mb-3">
                     <div class="col-md-2">
@@ -56,6 +57,23 @@
                             <td>
                                 <span class="badge @if ($item->status == 'disetujui') badge-success @elseif ($item->status == 'ditolak') badge-danger @else badge-warning @endif">{{ $item->status }}</span>
                             </td>
+
+                            @if ($item->tahun_ajaran_id ==
+    auth('mahasiswa')->user()->getLastTahunAjaran())
+                                <td>
+                                    <form action="{{ route('mahasiswa.krs-store-delete', ['id' => $item->id]) }}"
+                                        method="POST"
+                                        onsubmit="return confirm('Apakah Data ini ingin Menghapus Matakuliah ini ?')">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">Hapus KRS</button>
+                                    </form>
+                                </td>
+                            @else
+                                <td>
+                                    <a href="{{ route('mahasiswa.krs-list-mahasiswa', $item->matakuliah->id) }}"
+                                        class="btn btn-primary">List Mahasiswa</a>
+                                </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>

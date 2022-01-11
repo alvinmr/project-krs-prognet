@@ -50,7 +50,6 @@
             Echo.channel('user-message.' + "{{ auth('mahasiswa')->user()->id }}")
                 .listen('MessageEvent', (e) => {
                     @this.fetchMessage()
-
                 })
             Echo.channel('user-message.' + @this.chat_id)
                 .listen('MessageEvent', (e) => {
