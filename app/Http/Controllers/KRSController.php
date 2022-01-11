@@ -9,20 +9,22 @@ use Illuminate\Http\Request;
 
 class KRSController extends Controller
 {
-    protected $jumlahSks;
+    protected $jumlahSks = 20;
 
     public function showTableKRS(Request $request)
     {
-        if (auth('mahasiswa')->user()->ipk >= 0.00 && auth('mahasiswa')->user()->ipk <= 1.49) {
-            $this->jumlahSks = 12;
-        } else if (auth('mahasiswa')->user()->ipk >= 1.50 && auth('mahasiswa')->user()->ipk <= 1.99) {
-            $this->jumlahSks = 15;
-        } else if (auth('mahasiswa')->user()->ipk >= 2.00 && auth('mahasiswa')->user()->ipk <= 2.49) {
-            $this->jumlahSks = 18;
-        } else if (auth('mahasiswa')->user()->ipk >= 2.50 && auth('mahasiswa')->user()->ipk <= 2.99) {
-            $this->jumlahSks = 21;
-        } else if (auth('mahasiswa')->user()->ipk >= 3.00 && auth('mahasiswa')->user()->ipk <= 4.00) {
-            $this->jumlahSks = 24;
+        if (isset(auth('mahasiswa')->user()->ipk)) {
+            if (auth('mahasiswa')->user()->ipk > 0.00 && auth('mahasiswa')->user()->ipk <= 1.49) {
+                $this->jumlahSks = 12;
+            } else if (auth('mahasiswa')->user()->ipk >= 1.50 && auth('mahasiswa')->user()->ipk <= 1.99) {
+                $this->jumlahSks = 15;
+            } else if (auth('mahasiswa')->user()->ipk >= 2.00 && auth('mahasiswa')->user()->ipk <= 2.49) {
+                $this->jumlahSks = 18;
+            } else if (auth('mahasiswa')->user()->ipk >= 2.50 && auth('mahasiswa')->user()->ipk <= 2.99) {
+                $this->jumlahSks = 21;
+            } else if (auth('mahasiswa')->user()->ipk >= 3.00 && auth('mahasiswa')->user()->ipk <= 4.00) {
+                $this->jumlahSks = 24;
+            }
         }
 
         $mahasiswas = auth('mahasiswa')->user()->id;
@@ -57,7 +59,7 @@ class KRSController extends Controller
         $matakuliah = Matakuliah::find($id);
         $krs = new TransaksiKrs;
 
-        if (auth()->user()->getJumlahSks(auth('mahasiswa')->user()->getLastTahunAjaran()) +  $matakuliah->jumlah_sks > $this->jumlahSks) {
+        if (auth('mahasiswa')->user()->getJumlahSks(auth('mahasiswa')->user()->getLastTahunAjaran()) +  $matakuliah->jumlah_sks > $this->jumlahSks) {
             return redirect()->route('mahasiswa.krs-create')->with('failed', 'Jumlah SKS yang diperbolehkan melebihi batas');
         }
 
