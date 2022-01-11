@@ -5,10 +5,10 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('mahasiswa.krs-create') }}" class="btn btn-primary">Tambah KRS</a>
-
-
+            <a href="{{ route('mahasiswa.krs-create') }}" class="btn btn-primary mr-3">Tambah KRS</a>
+            <a href="{{ route('mahasiswa.krs-print') }}" class="btn btn-primary">Cetak KRS</a>
         </div>
+
         <div class="card-body">
             <p class="font-weight-bold">Jumlah SKS yang dapat diambil : {{ $jumlahSks }}</p>
             <form action="" method="GET">
@@ -47,7 +47,6 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     @foreach ($listKRS as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
@@ -58,6 +57,7 @@
                             <td>
                                 <span class="badge @if ($item->status == 'disetujui') badge-success @elseif ($item->status == 'ditolak') badge-danger @else badge-warning @endif">{{ $item->status }}</span>
                             </td>
+
                             @if ($item->tahun_ajaran_id ==
     auth('mahasiswa')->user()->getLastTahunAjaran())
                                 <td>
@@ -81,10 +81,3 @@
         </div>
     </div>
 @endsection
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            $('#tableMataKuliah').DataTable();
-        });
-    </script>
-@endpush
