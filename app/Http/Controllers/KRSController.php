@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TransaksiKrs;
 use App\Models\Matakuliah;
 use App\Models\TahunAjaran;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -71,18 +72,18 @@ class KRSController extends Controller
     public function printKRS(Request $request)
     {
         $mahasiswas = auth('mahasiswa')->user()->id;
-
+        $data_mahasiswa = Mahasiswa::all();
         $tahun_ajaran = TahunAjaran::limit(auth('mahasiswa')->user()->semester)->get();
+        $total_sks = auth('mahasiswa')->user()->getJumlahSks(auth('mahasiswa')->user()->getLastTahunAjaran());
+
         if (!$request->tahun_ajaran_id) {
             $listKRS = TransaksiKrs::whereMahasiswaId($mahasiswas)->whereTahunAjaranId(TahunAjaran::orderBy('id', 'desc')->first()->id)->get();
         } else {
             $listKRS = TransaksiKrs::whereMahasiswaId($mahasiswas)->whereTahunAjaranId($request->tahun_ajaran_id)->get();
         }
 
-
-        $file_PDF = PDF::loadview('pages.mahasiswa.krs.pdf', compact('listKRS'));
+        $file_PDF = PDF::loadview('pages.mahasiswa.krs.pdf', compact('listKRS', 'mahasiswas', 'tahun_ajaran', 'data_mahasiswa', 'total_sks'));
 
         return $file_PDF->download('KRS.pdf');  
-        /* return "test"; */  
     }
 }
