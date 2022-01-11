@@ -5,8 +5,8 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('mahasiswa.krs-create') }}" class="btn btn-primary">Tambah KRS</a>
-            <a href="{{ route('mahasiswa.krs-print') }}" class="btn btn-primary">Print KRS</a>
+            <a href="{{ route('mahasiswa.krs-create') }}" class="btn btn-primary mr-3">Tambah KRS</a>
+            <a href="{{ route('mahasiswa.krs-print') }}" class="btn btn-primary">Cetak KRS</a>
         </div>
 
         <div class="card-body">
