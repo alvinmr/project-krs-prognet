@@ -6,8 +6,11 @@
     <div class="card">
         <div class="card-header">
             <a href="{{ route('mahasiswa.krs-create') }}" class="btn btn-primary">Tambah KRS</a>
+
+
         </div>
         <div class="card-body">
+            <p class="font-weight-bold">Jumlah SKS yang dapat diambil : {{ $jumlahSks }}</p>
             <form action="" method="GET">
                 <div class="row md-2 mb-3">
                     <div class="col-md-2">
@@ -56,7 +59,7 @@
                                 <span class="badge @if ($item->status == 'disetujui') badge-success @elseif ($item->status == 'ditolak') badge-danger @else badge-warning @endif">{{ $item->status }}</span>
                             </td>
                             @if ($item->tahun_ajaran_id ==
-        auth('mahasiswa')->user()->getLastTahunAjaran())
+    auth('mahasiswa')->user()->getLastTahunAjaran())
                                 <td>
                                     <form action="{{ route('mahasiswa.krs-store-delete', ['id' => $item->id]) }}"
                                         method="POST"
