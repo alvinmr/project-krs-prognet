@@ -4,8 +4,13 @@
 
 @section('content')
     <div class="card">
+        <div class="card-header">
+            <a href="{{ route('mahasiswa.khs-print') }}" class="btn btn-primary">
+                Cetak KHS
+            </a>
+        </div>
         <div class="card-body">
-            <form action="" method="GET">
+            <form method="GET">
                 <div class="row md-2 mb-3">
                     <div class="col-md-2">
                         <label for="tahun_ajaran_id">Tahun Ajaran</label>

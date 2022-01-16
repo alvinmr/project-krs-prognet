@@ -64,7 +64,8 @@ Route::prefix('mahasiswa/')->name('mahasiswa.')->group(function () {
         /* krs-print*/
         Route::get('krs/print', [KRSController::class, 'printKRS'])->name('krs-print');
 
-        Route::resource('khs', KHSMahasiswaController::class);
+        Route::resource('khs', KHSMahasiswaController::class)->only('index');
+        Route::get('khs/print', [KHSMahasiswaController::class, 'printKHS'])->name('khs-print');
         Route::get('chat/{id}', [ChatController::class, 'index'])->name('chat.index');
         Route::get('matakuliah/list-mahasiswa/{id}', [KRSController::class, 'listMahasiswa'])->name('krs-list-mahasiswa');
     });
