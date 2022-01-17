@@ -14,10 +14,10 @@ class DosenSeeder extends Seeder
      */
     public function run()
     {
-        $nama = ['Abel', 'Rico', 'Ngurah', 'Fernando'];
-        $nip = ['198507232020072001', '198507232020072002', '198507232020072003', '198507232020072004'];
+        $nama = ['Abel', 'Rico', 'Ngurah', 'Fernando', 'Alvin'];
+        $nip = ['198507232020072001', '198507232020072002', '198507232020072003', '198507232020072004', '198507232020072004'];
 
-        for ($i = 0; $i < 3; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             Dosen::insert([
                 'nip' => $nip[$i],
                 'nama' => $nama[$i],
