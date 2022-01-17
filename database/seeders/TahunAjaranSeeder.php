@@ -18,6 +18,15 @@ class TahunAjaranSeeder extends Seeder
             [   
                 'nama'=>'Ganjil 2021/2022'
             ],
+            [   
+                'nama'=>'Genap 2021/2022'
+            ],
+            [   
+                'nama'=>'Ganjil 2022/2023'
+            ],
+            [   
+                'nama'=>'Genap 2022/2023'
+            ],
         ]);
     }
 }
