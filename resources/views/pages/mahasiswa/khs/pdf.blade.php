@@ -86,7 +86,7 @@
         <br>
         <br>
         <br>
-        <b>{{ auth('mahasiswa')->user()->nama }}, {{ auth('mahasiswa')->user()->nim }}</b>
+        <b>I Nyoman Piarsa, ST., MT.</b>
     </div>
 
 @endsection

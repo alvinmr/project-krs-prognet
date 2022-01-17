@@ -62,7 +62,8 @@
                 <br>
                 <br>
                 <br>
-                <b>{{ $item->nama }}, {{ $item->nim }}</b>
+                <b>I Nyoman Piarsa, ST., MT.</b>
+                {{-- <b>{{ $item->nama }}, {{ $item->nim }}</b> --}}
             </div>
         @endif
     @endforeach
