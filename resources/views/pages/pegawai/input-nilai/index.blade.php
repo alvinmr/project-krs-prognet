@@ -4,9 +4,6 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">
-            <a href="{{ route('pegawai.matakuliah.create') }}" class="btn btn-primary">Tambah Matakuliah</a>
-        </div>
         <div class="card-body">
             <form action="" method="GET">
                 <div class="row md-2 mb-3">
