@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use App\Models\TahunAjaran;
+use App\Models\TransaksiKrs;
+use PDF;
 use Illuminate\Http\Request;
 
 class KHSMahasiswaController extends Controller
@@ -13,6 +15,8 @@ class KHSMahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $jumlahSks = 20;
+
     public function index(Request $request)
     {
         if (!$request->tahun_ajaran_id) {
@@ -24,69 +28,32 @@ class KHSMahasiswaController extends Controller
         return view('pages.mahasiswa.khs.index', compact('khs', 'tahun_ajaran'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function printKHS(Request $request)
     {
-        //
-    }
+        if (isset(auth('mahasiswa')->user()->ipk)) {
+            if (auth('mahasiswa')->user()->ipk > 0.00 && auth('mahasiswa')->user()->ipk <= 1.49) {
+                $this->jumlahSks = 12;
+            } else if (auth('mahasiswa')->user()->ipk >= 1.50 && auth('mahasiswa')->user()->ipk <= 1.99) {
+                $this->jumlahSks = 15;
+            } else if (auth('mahasiswa')->user()->ipk >= 2.00 && auth('mahasiswa')->user()->ipk <= 2.49) {
+                $this->jumlahSks = 18;
+            } else if (auth('mahasiswa')->user()->ipk >= 2.50 && auth('mahasiswa')->user()->ipk <= 2.99) {
+                $this->jumlahSks = 21;
+            } else if (auth('mahasiswa')->user()->ipk >= 3.00 && auth('mahasiswa')->user()->ipk <= 4.00) {
+                $this->jumlahSks = 24;
+            }
+        }
+        $tahun_ajaran = TahunAjaran::limit(auth('mahasiswa')->user()->semester)->get();
+        $jumlahSks = $this->jumlahSks;
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        if (!$request->tahun_ajaran_id) {
+            $khs = auth('mahasiswa')->user()->transaksi_krs->where('tahun_ajaran_id', auth('mahasiswa')->user()->getLastTahunAjaran());
+        } else {
+            $khs = auth('mahasiswa')->user()->transaksi_krs->where('tahun_ajaran_id', $request->tahun_ajaran_id);
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $file_PDF = PDF::loadview('pages.mahasiswa.khs.pdf', compact('khs', 'tahun_ajaran', 'jumlahSks'));
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return $file_PDF->download('KHS - ' . auth('mahasiswa')->user()->nim . '.pdf');
     }
 }

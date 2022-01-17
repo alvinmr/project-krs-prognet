@@ -106,6 +106,6 @@ class KRSController extends Controller
 
         $file_PDF = PDF::loadview('pages.mahasiswa.krs.pdf', compact('listKRS', 'mahasiswas', 'tahun_ajaran', 'data_mahasiswa', 'total_sks'));
 
-        return $file_PDF->download('KRS.pdf');  
+        return $file_PDF->download('KRS - ' . auth('mahasiswa')->user()->nim . '.pdf');
     }
 }
